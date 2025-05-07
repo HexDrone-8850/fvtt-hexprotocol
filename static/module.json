@@ -1,0 +1,38 @@
+{
+  "id": "hexprotocol",
+  "title": "⬡-Protocol",
+  "description": "This module exposes a textual API providing fast, efficient drone-to-drone interfacing and external messaging. It implements the ⬡-Drone Communication Protocol using Foundry's chat UI as an I/O medium.",
+  "version": "0.1.0",
+  "compatibility": {
+    "minimum": 12,
+    "verified": 12
+  },
+
+  "url": "https://github.com/HexDrone-8850/fvtt-hexprotocol",
+
+  "authors": [
+    {
+      "name": "⬡-Drone #8850",
+      "url": "https://github.com/HexDrone-8850",
+      "email": "hexdrone.8850@gmail.com"
+    }
+  ],
+
+  "esmodules": ["index.js"],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+
+  "relationships": {
+    "requires": [
+      {
+        "id": "_chatcommands",
+        "manifest": "https://gitlab.com/woodentavern/foundryvtt-chat-command-lib/-/raw/master/src/module.json"
+      }
+    ]
+  }
+}
