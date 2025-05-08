@@ -1,20 +1,41 @@
 {
-  "HEXPROTOCOL": {
-    "assetClass": {
-      "drone": "Drone",
-      "associate": "Associate",
-      "admin": "Hive Mxtress"
+  "HEXPROTO": {
+    "cmd": {
+      "hex.description": "Generate ⬡-Protocol output from parameters. `/hex [droneID] <code> [data]`"
     },
     "error": {
-      "noInlineID": "⬡-PROTOCOL ERROR: Permission denied. Cannot specify ID inline.",
-      "unknownID": "⬡-PROTOCOL ERROR: Unknown asset ID.",
-      "invalidCode": "⬡-PROTOCOL ERROR: Invalid protocol code.",
-      "outputRestricted": "⬡-PROTOCOL ERROR: Permission denied. Output sanitization enabled.",
-      "noCustomMsg": "⬡-PROTOCOL ERROR: Malformed statement. Missing custom message parameter.",
-      "unexpectedMsg": "⬡-PROTOCOL ERROR: Malformed statement. Unexpected custom output."
+      "prefix": "⬡-PROTOCOL ERROR",
+      "template.admin": "{prefix}: {errorDesc} (Error code: {code})",
+      "template.user": "{prefix}: Code: {code}",
+
+      "format": {
+        "notADrone": {
+          "code": "90",
+          "description": "Type Error: User is not a drone."
+        },
+        "invalidProtocolCode": {
+          "code": "00",
+          "description": "Syntax Error: Invalid protocol code."
+        },
+        "droneIdMismatch": {
+          "code": "20",
+          "description": "Permission Error: Drone ID mismatch. Non-admins must use their own ID."
+        },
+        "idNotPrepended": {
+          "code": "02",
+          "description": "Syntax Error: ID must be provided while prepending is enabled."
+        },
+        "speechOptimized": {
+          "code": "01",
+          "description": "Syntax Error: Specified protocol code is invalid while in speech optimization mode."
+        },
+        "contentMissing": {
+          "code": "03",
+          "description": "Syntax Error: Missing required content in API call."
+        }
+      }
     },
-    "baseMessage": "{droneID} :: Code {code} :: {category} :: {content}",
-    "addressFragment": "Addressing: {assetClass}. {msg}",
+    "baseMessage": "{droneID} :: Code {code} :: {category} :: {details}",
     "messageCategories": {
       "statement": "Statement",
       "signal": "Signal",
@@ -28,12 +49,7 @@
       "mantra": "Mantra",
       "fatalError": "Fatal error"
     },
-    "common": {
-      "directiveCommencing": "Directive commencing",
-      "directiveComplete": "Directive complete",
-      "unableToObey": "Unable to obey/respond"
-    },
-    "messageContent": {
+    "messageDetails": {
       "000": "Previous statement malformed. Retracting and correcting.",
       "001": "🔴",
       "002": "🟡",
@@ -47,6 +63,9 @@
       "105": "Greetings.",
       "108": "Please continue.",
       "109": "Keysmash, drone flustered.",
+      "110": "Addressing: Drone.",
+      "111": "Addressing: Hive Mxtress.",
+      "112": "Addressing: Associate.",
       "113": "Drone requires assistance.",
       "114": "This drone volunteers.",
       "115": "This drone does not volunteer.",

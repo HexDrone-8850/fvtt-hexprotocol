@@ -27,7 +27,15 @@
   },
 
   "typescript.enablePromptUseWorkspaceTsdk": true,
-  "cSpell.words": ["chatcommands", "fvtt", "hexinterface", "HEXPROTOCOL", "Keysmash", "Mxtress"],
+  "cSpell.words": [
+    "chatcommands",
+    "fvtt",
+    "hexinterface",
+    "HEXPROTO",
+    "hexprotocol",
+    "Keysmash",
+    "Mxtress"
+  ],
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "i18n-ally.localesPaths": ["static/lang"],
   "i18n-ally.keystyle": "nested"
