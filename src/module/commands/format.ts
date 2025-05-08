@@ -122,9 +122,6 @@ function validateParams(params: string): ProtocolMsgParams {
     output.error ??= "contentMissing";
   }
 
-  // An error should be loaded up by here if anything went wrong,
-  // so it doesn't matter
-
   // Wrap it up
   return output;
 }
