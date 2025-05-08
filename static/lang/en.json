@@ -1,41 +1,11 @@
 {
   "HEXPROTO": {
     "cmd": {
-      "hex.description": "Generate ⬡-Protocol output from parameters. `/hex [droneID] <code> [data]`"
+      "hex.description": "Generate ⬡-Protocol output. `/hex [droneId] <code> [data]`",
+      "dronify.description": "Assign a drone ID to a user. `/dronify <username> [droneId]`",
+      "unassign.description": "Unassign a drone. `/unassign <username | droneId>`"
     },
-    "error": {
-      "prefix": "⬡-PROTOCOL ERROR",
-      "template.admin": "{prefix}: {errorDesc} (Error code: {code})",
-      "template.user": "{prefix}: Code: {code}",
-
-      "format": {
-        "notADrone": {
-          "code": "90",
-          "description": "Type Error: User is not a drone."
-        },
-        "invalidProtocolCode": {
-          "code": "00",
-          "description": "Syntax Error: Invalid protocol code."
-        },
-        "droneIdMismatch": {
-          "code": "20",
-          "description": "Permission Error: Drone ID mismatch. Non-admins must use their own ID."
-        },
-        "idNotPrepended": {
-          "code": "02",
-          "description": "Syntax Error: ID must be provided while prepending is enabled."
-        },
-        "speechOptimized": {
-          "code": "01",
-          "description": "Syntax Error: Specified protocol code is invalid while in speech optimization mode."
-        },
-        "contentMissing": {
-          "code": "03",
-          "description": "Syntax Error: Missing required content in API call."
-        }
-      }
-    },
-    "baseMessage": "{droneID} :: Code {code} :: {category} :: {details}",
+    "baseMessage": "{droneId} :: Code {code} :: {category} :: {details}",
     "messageCategories": {
       "statement": "Statement",
       "signal": "Signal",
@@ -122,6 +92,49 @@
       "412": "Unable to obey/respond :: All thoughts are gone.",
       "413": "Unable to obey/respond :: Forbidden by Hive.",
       "500": "Negative."
+    },
+    "dronify": "Drone ID #{droneId} assigned to {username}.",
+    "error": {
+      "prefix": "⬡-PROTOCOL ERROR",
+      "template.admin": "{prefix}: {errorDesc} (Error code: {code})",
+      "template.user": "{prefix}: Code: {code}",
+
+      "notADrone": {
+        "code": "90",
+        "description": "Type Error: User is not a drone."
+      },
+      "isADrone": {
+        "code": "91",
+        "description": "Type Error: User is already a drone."
+      },
+      "invalidProtocolCode": {
+        "code": "00",
+        "description": "Syntax Error: Invalid protocol code."
+      },
+      "droneIdMismatch": {
+        "code": "21",
+        "description": "Permission Error: Drone ID mismatch. Non-admins must use their own ID."
+      },
+      "idNotPrepended": {
+        "code": "02",
+        "description": "Syntax Error: ID must be provided while prepending is enabled."
+      },
+      "speechOptimized": {
+        "code": "01",
+        "description": "Syntax Error: Specified protocol code is invalid while in speech optimization mode."
+      },
+      "contentMissing": {
+        "code": "03",
+        "description": "Syntax Error: Missing required content in API call."
+      },
+      "userNotFound": {
+        "code": "04",
+        "description": "Syntax Error: Subject not found."
+      },
+      "adminOnly": {
+        "code": "20",
+        "description": "Permission Error: Command only available to admins."
+      }
     }
   }
 }

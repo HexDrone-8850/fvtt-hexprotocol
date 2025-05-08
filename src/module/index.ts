@@ -1,3 +1,4 @@
+import { dronifyCommand } from "./commands/dronify";
 import { formatMsgCommand } from "./commands/format";
 import { getGame } from "./utils";
 
@@ -5,7 +6,7 @@ interface ChatCommanderObject {
   register: (data: ChatCommandData) => void;
 }
 
-const chatCommands = [formatMsgCommand];
+const chatCommands = [formatMsgCommand, dronifyCommand];
 
 Hooks.on("chatCommandsReady", (commands: ChatCommanderObject) => {
   chatCommands.forEach((cmd) => {

@@ -1,5 +1,5 @@
-import type { EmptyObject } from "fvtt-types/utils";
-import { customOutputCodes, formatErrors, protocolCodes } from "./protocol";
+import type { EmptyObject, MaybePromise } from "fvtt-types/utils";
+import { customOutputCodes, errorIds, protocolCodes } from "./protocol";
 import { getGame, isFormatErrorID, isProtocolCode } from "./utils";
 
 declare global {
@@ -7,7 +7,7 @@ declare global {
     User: {
       hexprotocol: {
         // 4 digits
-        droneID: string;
+        droneId: string;
         isAdmin: boolean;
         optimizeSpeech: boolean;
         forcePrependId: boolean;
@@ -29,7 +29,7 @@ declare global {
       chat: ChatLog,
       parameters: string,
       messageData: ChatMessage.CreateData,
-    ) => ChatMessage.CreateData | EmptyObject | undefined;
+    ) => MaybePromise<ChatCommandCallbackResult>;
     // Check this if it's actually used
     // autocompleteCallback?: (
     //   menu: unknown,
@@ -39,9 +39,13 @@ declare global {
     closeOnComplete?: boolean;
   }
 
-  type FormatCommandError = keyof typeof formatErrors;
+  type ErrorId = keyof typeof errorIds;
   type HexProtocolCode = keyof typeof protocolCodes;
   type CustomProtocolCode = (typeof customOutputCodes)[number];
+  type ChatCommandCallbackResult =
+    | ChatMessage.CreateData
+    | EmptyObject
+    | undefined;
 }
 
 export const MODULE_ID = "hexprotocol";
@@ -52,9 +56,9 @@ Hooks.on("ready", () => {
 
   // Localize error messages
   const prefix = i18n.localize("HEXPROTO.error.prefix");
-  Object.keys(formatErrors).forEach((key) => {
+  Object.keys(errorIds).forEach((key) => {
     if (isFormatErrorID(key)) {
-      formatErrors[key] = i18n.format(`HEXPROTO.error.format.${key}`, {
+      errorIds[key] = i18n.format(`HEXPROTO.error.${key}`, {
         prefix,
       });
     }

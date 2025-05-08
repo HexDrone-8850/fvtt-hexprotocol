@@ -106,12 +106,15 @@ export const customOutputCodes = [
   "450",
 ] as const; // These are localized in the i18nInit hook
 
-export const formatErrors = {
+export const errorIds = {
   notADrone: "",
+  isADrone: "",
   invalidProtocolCode: "",
   noInlineID: "",
   speechOptimized: "",
   idNotPrepended: "",
   droneIdMismatch: "",
   contentMissing: "",
+  userNotFound: "",
+  adminOnly: "",
 };

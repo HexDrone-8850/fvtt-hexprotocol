@@ -8,10 +8,10 @@ import {
 } from "../utils";
 
 interface ProtocolMsgParams {
-  droneID: string;
+  droneId: string;
   code: HexProtocolCode;
   message: string;
-  error?: FormatCommandError;
+  error?: ErrorId;
 }
 
 export const formatMsgCommand: ChatCommandData = {
@@ -23,12 +23,12 @@ export const formatMsgCommand: ChatCommandData = {
   callback: formatMsgCallback,
 };
 
-export function formatMsgCallback(
+function formatMsgCallback(
   chat: ChatLog,
   parameters: string,
   _messageData: ChatMessage.CreateData,
 ) {
-  const { droneID, code, message, error } = validateParams(parameters);
+  const { droneId: droneId, code, message, error } = validateParams(parameters);
 
   // If error is set at all, we've got an error
   if (error) {
@@ -44,7 +44,7 @@ export function formatMsgCallback(
   const details = i18n.localize(`HEXPROTO.messageDetails.${code}`);
 
   const baseOutput = i18n.format("HEXPROTO.baseMessage", {
-    droneID,
+    droneId,
     code: `${code}`,
     category,
     details,
@@ -57,7 +57,7 @@ export function formatMsgCallback(
   return {
     content,
     speaker: {
-      alias: `⬡-Drone #${droneID}`,
+      alias: `⬡-Drone #${droneId}`,
     },
   };
 }
@@ -73,8 +73,8 @@ function validateParams(params: string): ProtocolMsgParams {
   const user = getGame().user;
 
   // If an ID was provided, use that; otherwise, use the stored one
-  const storedID = user.getFlag("hexprotocol", "droneID");
-  const droneID = id ?? storedID;
+  const storedID = user.getFlag("hexprotocol", "droneId");
+  const droneId = id ?? storedID;
   const isAdmin = user.getFlag("hexprotocol", "isAdmin");
 
   const optimizeSpeech =
@@ -86,14 +86,14 @@ function validateParams(params: string): ProtocolMsgParams {
 
   // We can cheat here with that `as` since if the code is invalid it'll never get checked
   const output: ProtocolMsgParams = {
-    droneID,
+    droneId,
     code: code as HexProtocolCode,
     message,
   };
 
   // Make sure the user is even a drone
   // If there is no stored or given drone ID, we can't do anything
-  if (!droneID) {
+  if (!droneId) {
     output.error ??= "notADrone";
   }
 

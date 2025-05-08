@@ -1,4 +1,4 @@
-import { formatErrors, customOutputCodes, protocolCodes } from "./protocol";
+import { errorIds, customOutputCodes, protocolCodes } from "./protocol";
 
 export function getGame(): ReadyGame {
   if (game instanceof Game && game.ready) {
@@ -8,7 +8,7 @@ export function getGame(): ReadyGame {
   throw new Error("game is not initialized yet!");
 }
 
-export function localizeErrorMessage(error: FormatCommandError) {
+export function localizeErrorMessage(error: ErrorId) {
   const game = getGame();
   const userCategory = game.user.getFlag("hexprotocol", "isAdmin")
     ? "admin"
@@ -35,6 +35,13 @@ export function isProtocolCode(
 ): code is HexProtocolCode {
   return code != undefined && code in protocolCodes;
 }
-export function isFormatErrorID(id: string): id is FormatCommandError {
-  return id in formatErrors;
+export function isFormatErrorID(id: string): id is ErrorId {
+  return id in errorIds;
+}
+
+export function randomString(length: number, chars: string) {
+  let result = "";
+  for (let i = length; i > 0; --i)
+    result += chars[Math.floor(Math.random() * chars.length)] ?? "";
+  return result;
 }
