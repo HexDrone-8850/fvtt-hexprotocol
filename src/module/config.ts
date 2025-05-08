@@ -9,8 +9,8 @@ declare global {
         // 4 digits
         droneID: string;
         isAdmin: boolean;
-        speechOptimized: boolean;
-        forceIdPrepend: boolean;
+        optimizeSpeech: boolean;
+        forcePrependId: boolean;
       };
     };
   }

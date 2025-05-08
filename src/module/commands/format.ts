@@ -77,10 +77,10 @@ function validateParams(params: string): ProtocolMsgParams {
   const droneID = id ?? storedID;
   const isAdmin = user.getFlag("hexprotocol", "isAdmin");
 
-  const speechOptimized =
-    user.getFlag("hexprotocol", "speechOptimized") && !isAdmin;
-  const forceIdPrepend =
-    user.getFlag("hexprotocol", "forceIdPrepend") && !isAdmin;
+  const optimizeSpeech =
+    user.getFlag("hexprotocol", "optimizeSpeech") && !isAdmin;
+  const forcePrependId =
+    user.getFlag("hexprotocol", "forcePrependId") && !isAdmin;
 
   const isCustomProtocol = isCustomProtocolCode(code);
 
@@ -108,12 +108,12 @@ function validateParams(params: string): ProtocolMsgParams {
   }
 
   // Did it forget to prepend its ID when it's supposed to?
-  if (forceIdPrepend && id !== storedID) {
+  if (forcePrependId && id !== storedID) {
     output.error ??= "idNotPrepended";
   }
 
   // Is its speech optimized and it's a forbidden code?
-  if (speechOptimized && isCustomProtocol) {
+  if (optimizeSpeech && isCustomProtocol) {
     output.error ??= "speechOptimized";
   }
 
