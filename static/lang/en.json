@@ -1,10 +1,10 @@
 {
   "HEXPROTO": {
     "cmd": {
-      "hex.description": "Generate ⬡-Protocol output. `/hex [droneId] <code> [data]`",
-      "dronify.description": "Assign a drone ID to a user. `/dronify <username> [droneId]`",
-      "unassign.description": "Unassign a drone. `/unassign <username | droneId>`",
-      "status.description": "Display a drone's status. `/drone_status <droneId>`"
+      "hex.description": "Generate ⬡-Protocol messages.",
+      "dronify.description": "Assign a drone ID to a user.",
+      "unassign.description": "Unassign a drone.",
+      "status.description": "Show drone status."
     },
     "chatAlias": {
       "hexDrone": "⬡-Drone #{droneId}",
