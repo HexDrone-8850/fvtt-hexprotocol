@@ -1,4 +1,4 @@
-import type { ProtocolConfigKey } from "./config";
+import type { ProtocolConfigKey, ProtocolConfigValue } from "./config";
 
 export function getGame(): ReadyGame {
   if (game instanceof Game && game.ready) {
@@ -15,17 +15,28 @@ export function randomString(length: number, chars: string) {
   return result;
 }
 
-export function getDroneById(droneId: string): User | undefined {
+export function getDroneById(droneId: string | undefined): User | undefined {
   return getGame().users.find(
     (user) => user.getFlag("hexprotocol", "droneId") === droneId,
   );
 }
 
-export function getDroneData(droneId: string, key: ProtocolConfigKey) {
+export function getDroneConfig(droneId: string, key: ProtocolConfigKey) {
   const drone = getDroneById(droneId);
   return drone?.getFlag("hexprotocol", key);
 }
 
-export function validateDroneId(droneId: string) {
-  return /^\d{4}$/.test(droneId);
+export async function setDroneConfig(
+  droneId: string,
+  key: ProtocolConfigKey,
+  value: ProtocolConfigValue,
+) {
+  const drone = getDroneById(droneId);
+  if (drone) {
+    return await drone.setFlag("hexprotocol", key, value);
+  }
+}
+
+export function validateDroneId(droneId: unknown) {
+  return typeof droneId === "string" && /^\d{4}$/.test(droneId);
 }

@@ -18,7 +18,7 @@ async function dronifyCallback(
   const game = getGame();
 
   if (!game.user.getFlag("hexprotocol", "isAdmin")) {
-    ui.notifications?.error(localizeErrorId("adminOnly"));
+    ui.notifications?.error(localizeErrorId("permissionDenied"));
     return {};
   }
 
@@ -31,7 +31,7 @@ async function dronifyCallback(
   const subject = game.users.getName(username);
 
   if (!subject) {
-    ui.notifications?.error(localizeErrorId("userNotFound"));
+    ui.notifications?.error(localizeErrorId("subjectNotFound"));
     return {};
   }
 

@@ -122,7 +122,7 @@ function validateParams(params: string): ProtocolMsgParams {
   }
 
   // Is its speech optimized and it's a forbidden code?
-  if (optimizeSpeech && isCustomProtocol) {
+  if (optimizeSpeech && (isCustomProtocol || msg)) {
     output.error ??= "speechOptimized";
   }
 

@@ -4,11 +4,16 @@
       "hex.description": "Generate ⬡-Protocol messages.",
       "dronify.description": "Assign a drone ID to a user.",
       "unassign.description": "Unassign a drone.",
-      "status.description": "Show drone status."
+      "status.description": "Show drone status.",
+      "config.description": "Configure drones."
     },
     "chatAlias": {
       "hexDrone": "⬡-Drone #{droneId}",
       "hexAI": "⬡-AI"
+    },
+    "config": {
+      "template": "Updated config for Drone #{droneId} :: KEY: {key} VALUE: {newValue} (was: {oldValue})",
+      "undefined": "Undefined"
     },
     "status": {
       "header": "Drone Status: #{droneId}",
@@ -119,49 +124,70 @@
       "template.admin": "{prefix}: {errorDesc} (Error code: {code})",
       "template.user": "{prefix}: Code: {code}",
 
-      "notADrone": {
-        "code": "90",
-        "description": "Type Error: User is not a drone."
-      },
-      "isADrone": {
-        "code": "91",
-        "description": "Type Error: User is already a drone."
-      },
       "invalidProtocolCode": {
         "code": "00",
-        "description": "Syntax Error: Invalid protocol code."
+        "type": "protocol",
+        "description": "Invalid protocol code."
       },
       "droneIdMismatch": {
-        "code": "21",
-        "description": "Permission Error: Drone ID mismatch. Non-admins must use their own ID."
+        "code": "01",
+        "type": "protocol",
+        "description": "Prepended drone ID does not match and drone is not an admin."
       },
       "idNotPrepended": {
         "code": "02",
-        "description": "Syntax Error: ID must be provided while prepending is enabled."
+        "type": "protocol",
+        "description": "ID must be provided while prepending is enabled."
       },
       "speechOptimized": {
-        "code": "01",
-        "description": "Syntax Error: Specified protocol code is invalid while in speech optimization mode."
+        "code": "03",
+        "type": "protocol",
+        "description": "Cannot transmit this code while in speech optimization mode."
       },
       "contentMissing": {
-        "code": "03",
-        "description": "Syntax Error: Missing required content in API call."
-      },
-      "userNotFound": {
         "code": "04",
-        "description": "Syntax Error: Subject not found."
+        "type": "protocol",
+        "description": "Missing required content in API call."
       },
-      "adminOnly": {
-        "code": "20",
-        "description": "Permission Error: Command only available to admins."
+      "droneNotFound": {
+        "code": "10",
+        "type": "os",
+        "description": "Drone not found."
       },
-      "noStatusPermission": {
-        "code": "22",
-        "description": "Permission Error: Drone status only visible to self and admin."
+      "subjectNotFound": {
+        "code": "11",
+        "type": "os",
+        "description": "Dronification subject not found."
+      },
+      "notADrone": {
+        "code": "12",
+        "type": "os",
+        "description": "User is not a drone."
+      },
+      "isADrone": {
+        "code": "13",
+        "type": "os",
+        "description": "User is already a drone."
       },
       "invalidDroneId": {
-        "code": "05",
-        "description": "Syntax Error: Malformed drone ID."
+        "code": "20",
+        "type": "syntax",
+        "description": "Malformed drone ID."
+      },
+      "invalidConfigKey": {
+        "code": "21",
+        "type": "syntax",
+        "description": "Invalid drone configuration key."
+      },
+      "invalidConfigValue": {
+        "code": "22",
+        "type": "syntax",
+        "description": "Invalid value for specified drone configuration key."
+      },
+      "permissionDenied": {
+        "code": "30",
+        "type": "permission",
+        "description": "Permission denied."
       }
     }
   }

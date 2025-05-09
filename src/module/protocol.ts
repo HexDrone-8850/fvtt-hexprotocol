@@ -121,10 +121,12 @@ export const errorIds = {
   idNotPrepended: "",
   droneIdMismatch: "",
   contentMissing: "",
-  userNotFound: "",
-  adminOnly: "",
-  noStatusPermission: "",
+  subjectNotFound: "",
+  droneNotFound: "",
+  permissionDenied: "",
   invalidDroneId: "",
+  invalidConfigKey: "",
+  invalidConfigValue: "",
 };
 
 export function localizeErrorId(error: HexProtocolErrorId) {

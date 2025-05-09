@@ -12,6 +12,7 @@ declare global {
 }
 
 export type ProtocolConfigKey = keyof HexProtocolConfig;
+export type ProtocolConfigValue = string | boolean;
 
 export interface ChatCommandData {
   name: string;
@@ -36,6 +37,15 @@ export interface ChatCommandData {
   // ) => string[];
   closeOnComplete?: boolean;
 }
+
+// TODO: Figure out a more DRY way to do this
+// As of now, protocolConfigKeys and HexProtocolConfig have to be in sync
+export const protocolConfigKeys = [
+  "droneId",
+  "isAdmin",
+  "optimizeSpeech",
+  "forcePrependId",
+] as const;
 
 interface HexProtocolConfig {
   // 4 digits

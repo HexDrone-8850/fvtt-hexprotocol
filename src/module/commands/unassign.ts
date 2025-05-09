@@ -18,7 +18,7 @@ async function unassignCallback(
   const game = getGame();
 
   if (!game.user.getFlag("hexprotocol", "isAdmin")) {
-    ui.notifications?.error(localizeErrorId("adminOnly"));
+    ui.notifications?.error(localizeErrorId("permissionDenied"));
     return {};
   }
 
@@ -27,22 +27,22 @@ async function unassignCallback(
     return {};
   }
 
-  const user = game.users.getName(parameters) ?? getDroneById(parameters);
+  const drone = game.users.getName(parameters) ?? getDroneById(parameters);
 
-  if (!user) {
-    ui.notifications?.error(localizeErrorId("userNotFound"));
+  if (!drone) {
+    ui.notifications?.error(localizeErrorId("droneNotFound"));
     return {};
   }
 
-  const username = user.name;
-  const droneId = user.getFlag("hexprotocol", "droneId");
+  const username = drone.name;
+  const droneId = drone.getFlag("hexprotocol", "droneId");
 
   if (!droneId) {
     ui.notifications?.error(localizeErrorId("notADrone"));
     return {};
   }
 
-  await user.unsetFlag("hexprotocol", "droneId");
+  await drone.unsetFlag("hexprotocol", "droneId");
 
   // Generate output
   const msg = game.i18n.format("HEXPROTO.dronify.unassign", {

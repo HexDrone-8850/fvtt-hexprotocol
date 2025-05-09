@@ -1,6 +1,6 @@
 import { MODULE_ID, type ChatCommandData } from "../config";
-import { getDroneById, getDroneData, getGame } from "../utils";
 import { localizeErrorId } from "../protocol";
+import { getDroneById, getDroneConfig, getGame } from "../utils";
 
 export const statusCommand: ChatCommandData = {
   name: "/drone_status",
@@ -22,22 +22,22 @@ async function statusCallback(
   const droneId = parameters.trim();
 
   if (currentUserDroneId !== droneId && !userIsAdmin) {
-    ui.notifications?.error(localizeErrorId("noStatusPermission"));
+    ui.notifications?.error(localizeErrorId("permissionDenied"));
     return {};
   }
 
-  const droneUser = getDroneById(droneId);
+  const drone = getDroneById(droneId);
 
-  if (!droneUser) {
-    ui.notifications?.error(localizeErrorId("userNotFound"));
+  if (!drone) {
+    ui.notifications?.error(localizeErrorId("droneNotFound"));
     return {};
   }
 
-  const username = droneUser.name;
+  const username = drone.name;
 
-  const isAdmin = getDroneData(droneId, "isAdmin");
-  const optimizeSpeech = getDroneData(droneId, "optimizeSpeech");
-  const forcePrependId = getDroneData(droneId, "forcePrependId");
+  const isAdmin = getDroneConfig(droneId, "isAdmin");
+  const optimizeSpeech = getDroneConfig(droneId, "optimizeSpeech");
+  const forcePrependId = getDroneConfig(droneId, "forcePrependId");
 
   const templatePath = "modules/hexprotocol/templates/drone-status.hbs";
 
