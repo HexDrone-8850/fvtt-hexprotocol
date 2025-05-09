@@ -41,7 +41,8 @@
     "Mxtress",
     "unassigning",
     "Unassignment",
-    "undronify"
+    "undronify",
+    "Oneesama"
   ],
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "i18n-ally.localesPaths": ["static/lang"],
