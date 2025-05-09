@@ -2,7 +2,7 @@ import { MODULE_ID } from "../config";
 import { protocolCodes } from "../protocol";
 import {
   isProtocolCode,
-  isCustomProtocolCode,
+  isCustomMessageCode,
   getGame,
   localizeErrorMessage,
 } from "../utils";
@@ -40,24 +40,27 @@ function formatMsgCallback(
   const i18n = getGame().i18n;
 
   // Otherwise, we have valid data
+  const customCode = isCustomMessageCode(code);
   const category = protocolCodes[code];
-  const details = i18n.localize(`HEXPROTO.messageDetails.${code}`);
+  const details = customCode
+    ? message
+    : i18n.localize(`HEXPROTO.protocol.details.${code}`);
 
-  const baseOutput = i18n.format("HEXPROTO.baseMessage", {
+  const baseOutput = i18n.format("HEXPROTO.protocol.template", {
     droneId,
     code: `${code}`,
     category,
     details,
   });
 
-  const addedOutput = message ? ` :: ${message}` : "";
+  const addedOutput = message && !customCode ? ` :: ${message}` : "";
 
   const content = `<code>${baseOutput}${addedOutput}</code>`;
 
   return {
     content,
     speaker: {
-      alias: `⬡-Drone #${droneId}`,
+      alias: i18n.format("HEXPROTO.chatAlias.hexDrone", { droneId }),
     },
   };
 }
@@ -82,7 +85,7 @@ function validateParams(params: string): ProtocolMsgParams {
   const forcePrependId =
     user.getFlag("hexprotocol", "forcePrependId") && !isAdmin;
 
-  const isCustomProtocol = isCustomProtocolCode(code);
+  const isCustomProtocol = isCustomMessageCode(code);
 
   // We can cheat here with that `as` since if the code is invalid it'll never get checked
   const output: ProtocolMsgParams = {

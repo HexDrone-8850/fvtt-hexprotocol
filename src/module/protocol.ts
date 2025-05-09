@@ -81,7 +81,7 @@ export const protocolCodes = {
   450: "error",
   500: "response",
 };
-export const customOutputCodes = [
+export const customMessageCodes = [
   // Statement
   "050",
   // Commentary

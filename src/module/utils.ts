@@ -1,4 +1,4 @@
-import { errorIds, customOutputCodes, protocolCodes } from "./protocol";
+import { errorIds, customMessageCodes, protocolCodes } from "./protocol";
 
 export function getGame(): ReadyGame {
   if (game instanceof Game && game.ready) {
@@ -25,17 +25,15 @@ export function localizeErrorMessage(error: ErrorId) {
     code,
   });
 }
-export function isCustomProtocolCode(
-  code: unknown,
-): code is CustomProtocolCode {
-  return customOutputCodes.includes(code as CustomProtocolCode);
+export function isCustomMessageCode(code: unknown): code is CustomProtocolCode {
+  return customMessageCodes.includes(code as CustomProtocolCode);
 }
 export function isProtocolCode(
   code: string | number | undefined,
 ): code is HexProtocolCode {
   return code != undefined && code in protocolCodes;
 }
-export function isFormatErrorID(id: string): id is ErrorId {
+export function isErrorID(id: string): id is ErrorId {
   return id in errorIds;
 }
 
@@ -44,4 +42,10 @@ export function randomString(length: number, chars: string) {
   for (let i = length; i > 0; --i)
     result += chars[Math.floor(Math.random() * chars.length)] ?? "";
   return result;
+}
+
+export function getDroneById(droneId: string): User | undefined {
+  return getGame().users.find(
+    (user) => user.getFlag("hexprotocol", "droneId") === droneId,
+  );
 }

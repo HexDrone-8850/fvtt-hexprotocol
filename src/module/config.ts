@@ -1,6 +1,6 @@
 import type { EmptyObject, MaybePromise } from "fvtt-types/utils";
-import { customOutputCodes, errorIds, protocolCodes } from "./protocol";
-import { getGame, isFormatErrorID, isProtocolCode } from "./utils";
+import { customMessageCodes, errorIds, protocolCodes } from "./protocol";
+import { getGame, isErrorID, isProtocolCode } from "./utils";
 
 declare global {
   interface FlagConfig {
@@ -41,7 +41,7 @@ declare global {
 
   type ErrorId = keyof typeof errorIds;
   type HexProtocolCode = keyof typeof protocolCodes;
-  type CustomProtocolCode = (typeof customOutputCodes)[number];
+  type CustomProtocolCode = (typeof customMessageCodes)[number];
   type ChatCommandCallbackResult =
     | ChatMessage.CreateData
     | EmptyObject
@@ -57,7 +57,7 @@ Hooks.on("ready", () => {
   // Localize error messages
   const prefix = i18n.localize("HEXPROTO.error.prefix");
   Object.keys(errorIds).forEach((key) => {
-    if (isFormatErrorID(key)) {
+    if (isErrorID(key)) {
       errorIds[key] = i18n.format(`HEXPROTO.error.${key}`, {
         prefix,
       });
@@ -67,7 +67,7 @@ Hooks.on("ready", () => {
   // Localize protocol categories
   Object.entries(protocolCodes).forEach(([key, val]) => {
     if (isProtocolCode(key)) {
-      protocolCodes[key] = i18n.localize(`HEXPROTO.messageCategories.${val}`);
+      protocolCodes[key] = i18n.localize(`HEXPROTO.protocol.categories.${val}`);
     }
   });
 });

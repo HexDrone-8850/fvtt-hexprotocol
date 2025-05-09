@@ -50,7 +50,7 @@ async function dronifyCallback(
   await subject.setFlag("hexprotocol", "droneId", droneId);
 
   // Generate output
-  const output = game.i18n.format("HEXPROTO.dronify", {
+  const output = game.i18n.format("HEXPROTO.dronify.assign", {
     droneId,
     username,
   });
