@@ -1,17 +1,22 @@
-import { MODULE_ID } from "../config";
-import { protocolCodes } from "../protocol";
+import { MODULE_ID, type ChatCommandData } from "../config";
+import {
+  protocolCodes,
+  type HexProtocolCode,
+  type HexProtocolErrorId,
+} from "../protocol";
+
+import { getGame } from "../utils";
 import {
   isProtocolCode,
   isCustomMessageCode,
-  getGame,
-  localizeErrorMessage,
-} from "../utils";
+  localizeErrorId,
+} from "../protocol";
 
 interface ProtocolMsgParams {
   droneId: string;
   code: HexProtocolCode;
   message: string;
-  error?: ErrorId;
+  error?: HexProtocolErrorId;
 }
 
 export const formatMsgCommand: ChatCommandData = {
@@ -32,19 +37,20 @@ function formatMsgCallback(
 
   // If error is set at all, we've got an error
   if (error) {
-    const errorMsg = localizeErrorMessage(error);
-    ui.notifications?.error(errorMsg);
+    ui.notifications?.error(localizeErrorId(error));
     return {};
   }
 
   const i18n = getGame().i18n;
 
   // Otherwise, we have valid data
-  const customCode = isCustomMessageCode(code);
+  const isCustomCode = isCustomMessageCode(code);
   const category = protocolCodes[code];
-  const details = customCode
+  // For some reason it thinks the type of `code` is `never`???
+  // Hence the `as string`
+  const details = isCustomCode
     ? message
-    : i18n.localize(`HEXPROTO.protocol.details.${code}`);
+    : i18n.localize(`HEXPROTO.protocol.details.${code as string}`);
 
   const baseOutput = i18n.format("HEXPROTO.protocol.template", {
     droneId,
@@ -53,7 +59,7 @@ function formatMsgCallback(
     details,
   });
 
-  const addedOutput = message && !customCode ? ` :: ${message}` : "";
+  const addedOutput = message && !isCustomCode ? ` :: ${message}` : "";
 
   const content = `<code>${baseOutput}${addedOutput}</code>`;
 

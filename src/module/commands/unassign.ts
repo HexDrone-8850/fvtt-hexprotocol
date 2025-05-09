@@ -1,5 +1,6 @@
-import { MODULE_ID } from "../config";
-import { getDroneById, getGame, localizeErrorMessage } from "../utils";
+import { MODULE_ID, type ChatCommandData } from "../config";
+import { getDroneById, getGame, validateDroneId } from "../utils";
+import { localizeErrorId } from "../protocol";
 
 export const unassignCommand: ChatCommandData = {
   name: "/unassign",
@@ -17,16 +18,19 @@ async function unassignCallback(
   const game = getGame();
 
   if (!game.user.getFlag("hexprotocol", "isAdmin")) {
-    const errorMsg = localizeErrorMessage("adminOnly");
-    ui.notifications?.error(errorMsg);
+    ui.notifications?.error(localizeErrorId("adminOnly"));
+    return {};
+  }
+
+  if (!validateDroneId(parameters)) {
+    ui.notifications?.error(localizeErrorId("invalidDroneId"));
     return {};
   }
 
   const user = game.users.getName(parameters) ?? getDroneById(parameters);
 
   if (!user) {
-    const errorMsg = localizeErrorMessage("userNotFound");
-    ui.notifications?.error(errorMsg);
+    ui.notifications?.error(localizeErrorId("userNotFound"));
     return {};
   }
 
@@ -34,8 +38,7 @@ async function unassignCallback(
   const droneId = user.getFlag("hexprotocol", "droneId");
 
   if (!droneId) {
-    const errorMsg = localizeErrorMessage("notADrone");
-    ui.notifications?.error(errorMsg);
+    ui.notifications?.error(localizeErrorId("notADrone"));
     return {};
   }
 
@@ -48,6 +51,8 @@ async function unassignCallback(
   });
   return {
     content: `<code>${msg}</code>`,
-    alias: game.i18n.localize("HEXPROTO.chatAlias.hexAI"),
+    speaker: {
+      alias: game.i18n.localize("HEXPROTO.chatAlias.hexAI"),
+    },
   };
 }

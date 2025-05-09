@@ -1,52 +1,54 @@
 import type { EmptyObject, MaybePromise } from "fvtt-types/utils";
-import { customMessageCodes, errorIds, protocolCodes } from "./protocol";
-import { getGame, isErrorID, isProtocolCode } from "./utils";
+import { errorIds, protocolCodes, type HexProtocolCode } from "./protocol";
+import { getGame } from "./utils";
+import { isErrorID, isProtocolCode } from "./protocol";
 
 declare global {
   interface FlagConfig {
     User: {
-      hexprotocol: {
-        // 4 digits
-        droneId: string;
-        isAdmin: boolean;
-        optimizeSpeech: boolean;
-        forcePrependId: boolean;
-      };
+      hexprotocol: HexProtocolConfig;
     };
   }
-
-  interface ChatCommandData {
-    name: string;
-    module: typeof MODULE_ID;
-    aliases?: string[];
-    // <= 80 chars
-    description?: string;
-    // e.g. `<i class="fas fa-dice-d20"></i>`
-    icon?: string;
-    requiredRole?: keyof typeof CONST.USER_ROLES;
-    // callback
-    callback?: (
-      chat: ChatLog,
-      parameters: string,
-      messageData: ChatMessage.CreateData,
-    ) => MaybePromise<ChatCommandCallbackResult>;
-    // Check this if it's actually used
-    // autocompleteCallback?: (
-    //   menu: unknown,
-    //   alias: string,
-    //   parameters: string,
-    // ) => string[];
-    closeOnComplete?: boolean;
-  }
-
-  type ErrorId = keyof typeof errorIds;
-  type HexProtocolCode = keyof typeof protocolCodes;
-  type CustomProtocolCode = (typeof customMessageCodes)[number];
-  type ChatCommandCallbackResult =
-    | ChatMessage.CreateData
-    | EmptyObject
-    | undefined;
 }
+
+export type ProtocolConfigKey = keyof HexProtocolConfig;
+
+export interface ChatCommandData {
+  name: string;
+  module: typeof MODULE_ID;
+  aliases?: string[];
+  // <= 80 chars
+  description?: string;
+  // e.g. `<i class="fas fa-dice-d20"></i>`
+  icon?: string;
+  requiredRole?: keyof typeof CONST.USER_ROLES;
+  // callback
+  callback?: (
+    chat: ChatLog,
+    parameters: string,
+    messageData: ChatMessage.CreateData,
+  ) => MaybePromise<ChatCommandCallbackResult>;
+  // Check this if it's actually used
+  // autocompleteCallback?: (
+  //   menu: unknown,
+  //   alias: string,
+  //   parameters: string,
+  // ) => string[];
+  closeOnComplete?: boolean;
+}
+
+interface HexProtocolConfig {
+  // 4 digits
+  droneId: string;
+  isAdmin: boolean;
+  optimizeSpeech: boolean;
+  forcePrependId: boolean;
+}
+
+type ChatCommandCallbackResult =
+  | ChatMessage.CreateData
+  | EmptyObject
+  | undefined;
 
 export const MODULE_ID = "hexprotocol";
 
@@ -67,7 +69,9 @@ Hooks.on("ready", () => {
   // Localize protocol categories
   Object.entries(protocolCodes).forEach(([key, val]) => {
     if (isProtocolCode(key)) {
-      protocolCodes[key] = i18n.localize(`HEXPROTO.protocol.categories.${val}`);
+      protocolCodes[key as HexProtocolCode] = i18n.localize(
+        `HEXPROTO.protocol.categories.${val}`,
+      );
     }
   });
 });

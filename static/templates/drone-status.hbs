@@ -1,0 +1,9 @@
+<h2>{{localize "HEXPROTO.status.header" droneId=droneId}}</h2>
+<code>{{localize "HEXPROTO.status.username" username=username}}</code>
+<code>{{localize "HEXPROTO.status.isAdmin" value=(ifThen isAdmin "True" "False")}}</code>
+{{#unless isAdmin}}
+<code>{{localize "HEXPROTO.status.speechOptimized"
+  value=(ifThen optimizeSpeech "True" "False")}}</code>
+<code>{{localize "HEXPROTO.status.forcePrependId"
+  value=(ifThen forcePrependId "True" "False")}}</code>
+{{/unless}}

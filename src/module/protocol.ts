@@ -1,3 +1,9 @@
+import { getGame } from "./utils";
+
+export type HexProtocolCode = keyof typeof protocolCodes;
+export type HexProtocolErrorId = keyof typeof errorIds;
+export type CustomProtocolCode = (typeof customMessageCodes)[number];
+
 export const protocolCodes = {
   "000": "statement",
   "001": "signal",
@@ -117,4 +123,38 @@ export const errorIds = {
   contentMissing: "",
   userNotFound: "",
   adminOnly: "",
+  noStatusPermission: "",
+  invalidDroneId: "",
 };
+
+export function localizeErrorId(error: HexProtocolErrorId) {
+  const game = getGame();
+  const userCategory = game.user.getFlag("hexprotocol", "isAdmin")
+    ? "admin"
+    : "user";
+
+  const prefix = game.i18n.localize("HEXPROTO.error.prefix");
+  const code = game.i18n.localize(`HEXPROTO.error.${error}.code`);
+  const errorDesc = game.i18n.localize(`HEXPROTO.error.${error}.description`);
+  const templateString = `HEXPROTO.error.template.${userCategory}`;
+
+  return game.i18n.format(templateString, {
+    prefix,
+    errorDesc,
+    code,
+  });
+}
+
+export function isCustomMessageCode(code: unknown): code is CustomProtocolCode {
+  return customMessageCodes.includes(code as CustomProtocolCode);
+}
+
+export function isProtocolCode(
+  code: string | number | undefined,
+): code is HexProtocolCode {
+  return code != undefined && code in protocolCodes;
+}
+
+export function isErrorID(id: string): id is HexProtocolErrorId {
+  return id in errorIds;
+}

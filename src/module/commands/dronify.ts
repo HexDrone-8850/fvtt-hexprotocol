@@ -1,5 +1,6 @@
-import { MODULE_ID } from "../config";
-import { getGame, localizeErrorMessage, randomString } from "../utils";
+import { MODULE_ID, type ChatCommandData } from "../config";
+import { getGame, randomString } from "../utils";
+import { localizeErrorId } from "../protocol";
 
 export const dronifyCommand: ChatCommandData = {
   name: "/dronify",
@@ -17,8 +18,7 @@ async function dronifyCallback(
   const game = getGame();
 
   if (!game.user.getFlag("hexprotocol", "isAdmin")) {
-    const errorMsg = localizeErrorMessage("adminOnly");
-    ui.notifications?.error(errorMsg);
+    ui.notifications?.error(localizeErrorId("adminOnly"));
     return {};
   }
 
@@ -31,15 +31,13 @@ async function dronifyCallback(
   const subject = game.users.getName(username);
 
   if (!subject) {
-    const errorMsg = localizeErrorMessage("userNotFound");
-    ui.notifications?.error(errorMsg);
+    ui.notifications?.error(localizeErrorId("userNotFound"));
     return {};
   }
 
   // Check if user is already a drone (ERROR)
   if (subject.getFlag("hexprotocol", "droneId")) {
-    const errorMsg = localizeErrorMessage("isADrone");
-    ui.notifications?.error(errorMsg);
+    ui.notifications?.error(localizeErrorId("isADrone"));
     return {};
   }
 

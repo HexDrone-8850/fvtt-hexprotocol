@@ -1,4 +1,4 @@
-import { errorIds, customMessageCodes, protocolCodes } from "./protocol";
+import type { ProtocolConfigKey } from "./config";
 
 export function getGame(): ReadyGame {
   if (game instanceof Game && game.ready) {
@@ -6,35 +6,6 @@ export function getGame(): ReadyGame {
   }
 
   throw new Error("game is not initialized yet!");
-}
-
-export function localizeErrorMessage(error: ErrorId) {
-  const game = getGame();
-  const userCategory = game.user.getFlag("hexprotocol", "isAdmin")
-    ? "admin"
-    : "user";
-
-  const prefix = game.i18n.localize("HEXPROTO.error.prefix");
-  const code = game.i18n.localize(`HEXPROTO.error.${error}.code`);
-  const errorDesc = game.i18n.localize(`HEXPROTO.error.${error}.description`);
-  const templateString = `HEXPROTO.error.template.${userCategory}`;
-
-  return game.i18n.format(templateString, {
-    prefix,
-    errorDesc,
-    code,
-  });
-}
-export function isCustomMessageCode(code: unknown): code is CustomProtocolCode {
-  return customMessageCodes.includes(code as CustomProtocolCode);
-}
-export function isProtocolCode(
-  code: string | number | undefined,
-): code is HexProtocolCode {
-  return code != undefined && code in protocolCodes;
-}
-export function isErrorID(id: string): id is ErrorId {
-  return id in errorIds;
 }
 
 export function randomString(length: number, chars: string) {
@@ -48,4 +19,13 @@ export function getDroneById(droneId: string): User | undefined {
   return getGame().users.find(
     (user) => user.getFlag("hexprotocol", "droneId") === droneId,
   );
+}
+
+export function getDroneData(droneId: string, key: ProtocolConfigKey) {
+  const drone = getDroneById(droneId);
+  return drone?.getFlag("hexprotocol", key);
+}
+
+export function validateDroneId(droneId: string) {
+  return /^\d{4}$/.test(droneId);
 }

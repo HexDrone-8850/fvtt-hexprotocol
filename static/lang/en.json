@@ -3,11 +3,22 @@
     "cmd": {
       "hex.description": "Generate ⬡-Protocol output. `/hex [droneId] <code> [data]`",
       "dronify.description": "Assign a drone ID to a user. `/dronify <username> [droneId]`",
-      "unassign.description": "Unassign a drone. `/unassign <username | droneId>`"
+      "unassign.description": "Unassign a drone. `/unassign <username | droneId>`",
+      "status.description": "Display a drone's status. `/drone_status <droneId>`"
     },
     "chatAlias": {
       "hexDrone": "⬡-Drone #{droneId}",
       "hexAI": "⬡-AI"
+    },
+    "status": {
+      "header": "Drone Status: #{droneId}",
+      "username": "Username: {username}",
+      "isAdmin": "Admin: {value}",
+      "speechOptimized": "Speech Optimized: {value}",
+      "forcePrependId": "Force Prepend ID: {value}",
+
+      "true": "True",
+      "false": "False"
     },
     "dronify": {
       "assign": "Drone ID #{droneId} assigned to {username}.",
@@ -143,6 +154,14 @@
       "adminOnly": {
         "code": "20",
         "description": "Permission Error: Command only available to admins."
+      },
+      "noStatusPermission": {
+        "code": "22",
+        "description": "Permission Error: Drone status only visible to self and admin."
+      },
+      "invalidDroneId": {
+        "code": "05",
+        "description": "Syntax Error: Malformed drone ID."
       }
     }
   }
