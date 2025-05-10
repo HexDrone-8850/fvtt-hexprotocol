@@ -60,6 +60,8 @@ Admin/GM only. Unassign a drone and return it to an associate state. Either a us
 
 Admin/GM only. Sets the designated configuration key to the designated value for the target drone. Currently, both configuration values are boolean; `true`/`1` or `false`/`0` are the valid inputs.
 
+`isAdmin`: If true, the user is an admin for purposes of this module. GM users always have admin privileges, in case a malfunctioning drone de-admins everyone on the server.
+
 `optimizeSpeech`: If true, the drone may not append text to the end of a transmission and may not use transmission codes without extra data (e.g. `050`, `250`) at all.
 
 `forcePrependId`: If true, the drone must prepend their ID number to messages sent with `/hc!protocol`.
