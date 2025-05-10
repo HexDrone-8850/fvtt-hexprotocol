@@ -20,7 +20,7 @@ interface ProtocolMsgParams {
 }
 
 export const formatMsgCommand: ChatCommandData = {
-  name: "/hex",
+  name: "/hc!protocol",
   module: MODULE_ID,
   description: "HEXPROTO.cmd.hex.description",
   aliases: ["/h", "/d"],

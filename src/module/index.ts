@@ -1,5 +1,5 @@
 import { configMsgCommand } from "./commands/drone-config";
-import { dronifyCommand } from "./commands/dronify";
+import { dronifyCommand } from "./commands/assign";
 import { formatMsgCommand } from "./commands/format";
 import { listCommand } from "./commands/list";
 import { statusCommand } from "./commands/status";

@@ -3,8 +3,7 @@ import { localizeErrorId } from "../protocol";
 import { getDroneById, getDroneConfig, getGame } from "../utils";
 
 export const statusCommand: ChatCommandData = {
-  name: "/drone_status",
-  aliases: ["/dstatus"],
+  name: "/hc!status",
   module: MODULE_ID,
   description: "HEXPROTO.cmd.status.description",
   icon: '<img src="icons/svg/pill.svg" />',

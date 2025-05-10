@@ -14,8 +14,7 @@ import {
 } from "../utils";
 
 export const configMsgCommand: ChatCommandData = {
-  name: "/hc_config",
-  aliases: ["/cfg"],
+  name: "/hc!config",
   module: MODULE_ID,
   description: "HEXPROTO.cmd.config.description",
   icon: '<img src="icons/svg/daze.svg" />',

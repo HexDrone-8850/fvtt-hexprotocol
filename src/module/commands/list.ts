@@ -3,7 +3,7 @@ import { localizeErrorId } from "../protocol";
 import { getGame } from "../utils";
 
 export const listCommand: ChatCommandData = {
-  name: "/list_drones",
+  name: "/hc!list",
   module: MODULE_ID,
   description: "HEXPROTO.cmd.list.description",
   icon: '<img src="icons/svg/pill.svg" />',

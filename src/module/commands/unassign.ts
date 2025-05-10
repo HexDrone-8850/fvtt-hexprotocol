@@ -3,7 +3,8 @@ import { getDroneById, getGame, validateDroneId } from "../utils";
 import { localizeErrorId } from "../protocol";
 
 export const unassignCommand: ChatCommandData = {
-  name: "/unassign",
+  name: "/hc!unassign",
+  aliases: ["/hc!undronify"],
   module: MODULE_ID,
   description: "HEXPROTO.cmd.unassign.description",
   icon: '<img src="icons/svg/light-off.svg" />',

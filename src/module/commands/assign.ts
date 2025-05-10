@@ -3,7 +3,8 @@ import { getGame, randomString } from "../utils";
 import { localizeErrorId } from "../protocol";
 
 export const dronifyCommand: ChatCommandData = {
-  name: "/dronify",
+  name: "/hc!assign",
+  aliases: ["/hc!dronify"],
   module: MODULE_ID,
   description: "HEXPROTO.cmd.dronify.description",
   icon: '<img src="icons/svg/sun.svg" />',
