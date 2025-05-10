@@ -5,11 +5,15 @@
       "dronify.description": "Assign a drone ID to a user.",
       "unassign.description": "Unassign a drone.",
       "status.description": "Show drone status.",
-      "config.description": "Configure drones."
+      "config.description": "Configure drones.",
+      "list.description": "List drones."
     },
     "chatAlias": {
       "hexDrone": "⬡-Drone #{droneId}",
       "hexAI": "⬡-AI"
+    },
+    "list": {
+      "header": "Drone List"
     },
     "config": {
       "template": "Updated config for Drone #{droneId} :: KEY: {key} VALUE: {newValue} (was: {oldValue})",

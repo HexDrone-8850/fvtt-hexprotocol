@@ -100,6 +100,7 @@ async function droneConfigCallback(
     speaker: {
       alias: game.i18n.localize("HEXPROTO.chatAlias.hexAI"),
     },
+    whisper: [game.user.id],
   };
 }
 

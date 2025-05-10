@@ -1,6 +1,7 @@
 import { configMsgCommand } from "./commands/drone-config";
 import { dronifyCommand } from "./commands/dronify";
 import { formatMsgCommand } from "./commands/format";
+import { listCommand } from "./commands/list";
 import { statusCommand } from "./commands/status";
 import { unassignCommand } from "./commands/unassign";
 import type { ChatCommandData } from "./config";
@@ -16,6 +17,7 @@ const chatCommands = [
   unassignCommand,
   statusCommand,
   configMsgCommand,
+  listCommand,
 ];
 
 Hooks.on("chatCommandsReady", (commands: ChatCommanderObject) => {

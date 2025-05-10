@@ -54,5 +54,9 @@ async function dronifyCallback(
   });
   return {
     content: `<code>${output}</code>`,
+    speaker: {
+      alias: game.i18n.localize("HEXPROTO.chatAlias.hexAI"),
+    },
+    whisper: [game.user.id],
   };
 }
