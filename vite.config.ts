@@ -26,10 +26,10 @@ const manifestJSONPath = await findManifestJSON(packageType);
 
 const filesToCopy = [
   manifestJSONPath,
-  // "CHANGELOG.md",
+  "CHANGELOG.md",
   "README.md",
   "LICENSE.md",
-  // "CONTRIBUTING.md",
+  "CONTRIBUTING.md",
 ]; // Feel free to change me.
 
 const devServerPort = 30001;

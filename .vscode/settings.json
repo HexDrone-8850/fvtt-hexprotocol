@@ -30,6 +30,7 @@
   "cSpell.words": [
     "chatcommands",
     "Dronification",
+    "Dronifies",
     "dronify",
     "dstatus",
     "fvtt",
@@ -37,7 +38,10 @@
     "HEXPROTO",
     "hexprotocol",
     "Keysmash",
-    "Mxtress"
+    "Mxtress",
+    "unassigning",
+    "Unassignment",
+    "undronify"
   ],
   "typescript.tsdk": "node_modules\\typescript\\lib",
   "i18n-ally.localesPaths": ["static/lang"],

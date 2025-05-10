@@ -50,6 +50,7 @@ async function unassignCallback(
     username,
     droneId,
   });
+
   return {
     content: `<code>${msg}</code>`,
     speaker: {
