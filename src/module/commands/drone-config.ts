@@ -6,6 +6,7 @@ import {
 } from "../config";
 import { localizeErrorId } from "../protocol";
 import {
+  currentUserIsAdmin,
   getDroneById,
   getDroneConfig,
   getGame,
@@ -28,7 +29,7 @@ async function droneConfigCallback(
 ) {
   const game = getGame();
 
-  if (!(game.user.isGM || game.user.getFlag("hexprotocol", "isAdmin"))) {
+  if (!currentUserIsAdmin()) {
     ui.notifications?.error(localizeErrorId("permissionDenied"));
     return {};
   }

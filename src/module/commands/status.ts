@@ -1,6 +1,11 @@
 import { MODULE_ID, type ChatCommandData } from "../config";
 import { localizeErrorId } from "../protocol";
-import { getDroneById, getDroneConfig, getGame } from "../utils";
+import {
+  currentUserIsAdmin,
+  getDroneById,
+  getDroneConfig,
+  getGame,
+} from "../utils";
 
 export const statusCommand: ChatCommandData = {
   name: "/hc!status",
@@ -16,7 +21,7 @@ async function statusCallback(
   _messageData: ChatMessage.CreateData,
 ) {
   const game = getGame();
-  const userIsAdmin = game.user.getFlag("hexprotocol", "isAdmin");
+  const userIsAdmin = currentUserIsAdmin();
   const currentUserDroneId = game.user.getFlag("hexprotocol", "droneId");
   const droneId = parameters.trim();
 

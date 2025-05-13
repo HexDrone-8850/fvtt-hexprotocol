@@ -1,5 +1,5 @@
 import { MODULE_ID, type ChatCommandData } from "../config";
-import { getGame, randomString } from "../utils";
+import { currentUserIsAdmin, getGame, randomString } from "../utils";
 import { localizeErrorId } from "../protocol";
 
 export const dronifyCommand: ChatCommandData = {
@@ -18,7 +18,7 @@ async function dronifyCallback(
 ) {
   const game = getGame();
 
-  if (!game.user.getFlag("hexprotocol", "isAdmin")) {
+  if (!currentUserIsAdmin()) {
     ui.notifications?.error(localizeErrorId("permissionDenied"));
     return {};
   }
@@ -47,6 +47,11 @@ async function dronifyCallback(
 
   // Add flag to drone
   await subject.setFlag("hexprotocol", "droneId", droneId);
+
+  // If the drone is a GM, give it the admin flag
+  if (game.user.isGM) {
+    await subject.setFlag("hexprotocol", "isAdmin", true);
+  }
 
   // Generate output
   const output = game.i18n.format("HEXPROTO.dronify.assign", {

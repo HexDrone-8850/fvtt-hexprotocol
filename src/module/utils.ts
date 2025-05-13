@@ -40,3 +40,9 @@ export async function setDroneConfig(
 export function validateDroneId(droneId: unknown) {
   return typeof droneId === "string" && /^\d{4}$/.test(droneId);
 }
+
+export function currentUserIsAdmin() {
+  const user = getGame().user;
+
+  return user.getFlag("hexprotocol", "isAdmin") || user.isGM;
+}

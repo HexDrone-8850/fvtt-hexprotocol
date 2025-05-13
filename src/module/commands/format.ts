@@ -5,7 +5,7 @@ import {
   type HexProtocolErrorId,
 } from "../protocol";
 
-import { getGame } from "../utils";
+import { currentUserIsAdmin, getGame } from "../utils";
 import {
   isProtocolCode,
   isCustomMessageCode,
@@ -84,7 +84,7 @@ function validateParams(params: string): ProtocolMsgParams {
   // If an ID was provided, use that; otherwise, use the stored one
   const storedID = user.getFlag("hexprotocol", "droneId");
   const droneId = id ?? storedID;
-  const isAdmin = user.getFlag("hexprotocol", "isAdmin");
+  const isAdmin = currentUserIsAdmin();
 
   const optimizeSpeech =
     user.getFlag("hexprotocol", "optimizeSpeech") && !isAdmin;

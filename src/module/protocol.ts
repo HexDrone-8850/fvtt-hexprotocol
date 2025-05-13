@@ -1,4 +1,4 @@
-import { getGame } from "./utils";
+import { currentUserIsAdmin, getGame } from "./utils";
 
 export type HexProtocolCode = keyof typeof protocolCodes;
 export type HexProtocolErrorId = keyof typeof errorIds;
@@ -87,6 +87,7 @@ export const protocolCodes = {
   450: "error",
   500: "response",
 };
+
 export const customMessageCodes = [
   // Statement
   "050",
@@ -131,9 +132,7 @@ export const errorIds = {
 
 export function localizeErrorId(error: HexProtocolErrorId) {
   const game = getGame();
-  const userCategory = game.user.getFlag("hexprotocol", "isAdmin")
-    ? "admin"
-    : "user";
+  const userCategory = currentUserIsAdmin() ? "admin" : "user";
 
   const prefix = game.i18n.localize("HEXPROTO.error.prefix");
   const code = game.i18n.localize(`HEXPROTO.error.${error}.code`);

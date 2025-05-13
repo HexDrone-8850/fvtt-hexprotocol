@@ -1,6 +1,6 @@
 import { MODULE_ID, type ChatCommandData } from "../config";
 import { localizeErrorId } from "../protocol";
-import { getGame } from "../utils";
+import { currentUserIsAdmin, getGame } from "../utils";
 
 export const listCommand: ChatCommandData = {
   name: "/hc!list",
@@ -16,7 +16,7 @@ function listDronesCallback(
   _messageData: ChatMessage.CreateData,
 ) {
   const game = getGame();
-  const isAdmin = game.user.getFlag("hexprotocol", "isAdmin");
+  const isAdmin = currentUserIsAdmin();
   const isGM = game.user.isGM;
 
   if (!(isGM || isAdmin)) {

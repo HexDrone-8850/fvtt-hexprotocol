@@ -1,5 +1,10 @@
 import { MODULE_ID, type ChatCommandData } from "../config";
-import { getDroneById, getGame, validateDroneId } from "../utils";
+import {
+  currentUserIsAdmin,
+  getDroneById,
+  getGame,
+  validateDroneId,
+} from "../utils";
 import { localizeErrorId } from "../protocol";
 
 export const unassignCommand: ChatCommandData = {
@@ -18,7 +23,7 @@ async function unassignCallback(
 ) {
   const game = getGame();
 
-  if (!game.user.getFlag("hexprotocol", "isAdmin")) {
+  if (!currentUserIsAdmin()) {
     ui.notifications?.error(localizeErrorId("permissionDenied"));
     return {};
   }
