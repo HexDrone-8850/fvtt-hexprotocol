@@ -86,6 +86,8 @@ export const protocolCodes = {
   413: "error",
   450: "error",
   500: "response",
+  600: "narration",
+  700: "ooc",
 };
 
 export const customMessageCodes = [
@@ -111,6 +113,10 @@ export const customMessageCodes = [
   "350",
   // Error
   "450",
+  // Narration
+  "600",
+  // OOC
+  "700",
 ] as const; // These are localized in the i18nInit hook
 
 export const errorIds = {
@@ -159,3 +165,6 @@ export function isProtocolCode(
 export function isErrorID(id: string): id is HexProtocolErrorId {
   return id in errorIds;
 }
+
+// const NARRATION_CODE = "600";
+// const OOC_CODE = "700";

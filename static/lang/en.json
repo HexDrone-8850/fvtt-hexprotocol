@@ -46,7 +46,9 @@
         "response": "Response",
         "error": "Error",
         "mantra": "Mantra",
-        "fatalError": "Fatal error"
+        "fatalError": "Fatal error",
+        "narration": "Narration",
+        "ooc": "OOC"
       },
       "details": {
         "000": "Previous statement malformed. Retracting and correcting.",
