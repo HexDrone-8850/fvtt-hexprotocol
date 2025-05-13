@@ -1,5 +1,15 @@
 {
   "HEXPROTO": {
+    "settings": {
+      "allowNarration": {
+        "name": "Enable protocol extension 600",
+        "hint": "Enables admin-only protocol extension code 600 for narrative transmissions."
+      },
+      "allowOOC": {
+        "name": "Enable protocol extension 700",
+        "hint": "Enables protocol extension code 700 for out-of-character transmissions."
+      }
+    },
     "cmd": {
       "hex.description": "Generate ⬡-Protocol messages.",
       "dronify.description": "Assign a drone ID to a user.",

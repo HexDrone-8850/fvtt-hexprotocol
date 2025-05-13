@@ -1,7 +1,7 @@
 import type { EmptyObject, MaybePromise } from "fvtt-types/utils";
 import { errorIds, protocolCodes, type HexProtocolCode } from "./protocol";
 import { getGame } from "./utils";
-import { isErrorID, isProtocolCode } from "./protocol";
+import { isErrorID } from "./protocol";
 
 declare global {
   interface FlagConfig {
@@ -78,10 +78,8 @@ Hooks.on("ready", () => {
 
   // Localize protocol categories
   Object.entries(protocolCodes).forEach(([key, val]) => {
-    if (isProtocolCode(key)) {
-      protocolCodes[key as HexProtocolCode] = i18n.localize(
-        `HEXPROTO.protocol.categories.${val}`,
-      );
-    }
+    protocolCodes[key as HexProtocolCode] = i18n.localize(
+      `HEXPROTO.protocol.categories.${val}`,
+    );
   });
 });

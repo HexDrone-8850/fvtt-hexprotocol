@@ -6,6 +6,7 @@ import { statusCommand } from "./commands/status";
 import { unassignCommand } from "./commands/unassign";
 import type { ChatCommandData } from "./config";
 import { getGame } from "./utils";
+import { registerModuleSettings } from "./settings";
 
 interface ChatCommanderObject {
   register: (data: ChatCommandData) => void;
@@ -28,4 +29,8 @@ Hooks.on("chatCommandsReady", (commands: ChatCommanderObject) => {
     }
     commands.register(cmd);
   });
+});
+
+Hooks.on("ready", () => {
+  registerModuleSettings();
 });

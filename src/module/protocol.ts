@@ -156,15 +156,24 @@ export function isCustomMessageCode(code: unknown): code is CustomProtocolCode {
   return customMessageCodes.includes(code as CustomProtocolCode);
 }
 
-export function isProtocolCode(
+export function isValidProtocolCode(
   code: string | number | undefined,
 ): code is HexProtocolCode {
-  return code != undefined && code in protocolCodes;
+  const settings = getGame().settings;
+
+  const denyNarration =
+    code === NARRATION_CODE &&
+    !(settings.get("hexprotocol", "allowNarration") && currentUserIsAdmin());
+  const denyOOC = code === OOC_CODE && !settings.get("hexprotocol", "allowOOC");
+
+  return (
+    code != undefined && code in protocolCodes && !denyNarration && !denyOOC
+  );
 }
 
 export function isErrorID(id: string): id is HexProtocolErrorId {
   return id in errorIds;
 }
 
-// const NARRATION_CODE = "600";
-// const OOC_CODE = "700";
+const NARRATION_CODE = "600";
+const OOC_CODE = "700";

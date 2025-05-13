@@ -7,7 +7,7 @@ import {
 
 import { currentUserIsAdmin, getGame } from "../utils";
 import {
-  isProtocolCode,
+  isValidProtocolCode,
   isCustomMessageCode,
   localizeErrorId,
 } from "../protocol";
@@ -107,7 +107,7 @@ function validateParams(params: string): ProtocolMsgParams {
   }
 
   // Is this a valid code?
-  if (msgCode == undefined || !isProtocolCode(msgCode)) {
+  if (msgCode == undefined || !isValidProtocolCode(msgCode)) {
     output.error ??= "invalidProtocolCode";
   }
 
