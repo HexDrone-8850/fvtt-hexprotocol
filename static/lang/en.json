@@ -16,7 +16,8 @@
       "unregister.description": "Unregister a drone.",
       "status.description": "Show drone status.",
       "config.description": "Configure drones.",
-      "list.description": "List drones."
+      "list.description": "List drones.",
+      "explain.description": "Explain a ⬡-Protocol error code."
     },
     "chatAlias": {
       "hexDrone": "⬡-Drone #{droneId}",
@@ -39,6 +40,7 @@
       "true": "True",
       "false": "False"
     },
+    "explain": "⬡-Protocol Error code {code} description: {desc}",
     "register": "{username} registered with ID #{droneId}.",
     "unregister": "{username} unregistered (was #{droneId}).",
     "protocol": {
@@ -135,71 +137,62 @@
     },
     "error": {
       "prefix": "⬡-PROTOCOL ERROR",
-      "template.admin": "{prefix}: {errorDesc} (Error code: {code})",
-      "template.user": "{prefix}: Code: {code}",
+      "template.admin": "{prefix} {code}: {desc}",
+      "template.user": "{prefix} {code}",
 
       "invalidProtocolCode": {
-        "code": "00",
         "type": "protocol",
         "description": "Invalid protocol code."
       },
       "droneIdMismatch": {
-        "code": "01",
         "type": "protocol",
         "description": "Prepended drone ID does not match and drone is not an admin."
       },
       "idNotPrepended": {
-        "code": "02",
         "type": "protocol",
         "description": "ID must be provided while prepending is enabled."
       },
       "speechOptimized": {
-        "code": "03",
         "type": "protocol",
         "description": "Cannot transmit this code while in speech optimization mode."
       },
       "contentMissing": {
-        "code": "04",
         "type": "protocol",
         "description": "Missing required content in API call."
       },
+      "unknownErrorCode": {
+        "type": "protocol",
+        "description": "Unknown error code."
+      },
       "droneNotFound": {
-        "code": "10",
         "type": "os",
         "description": "Drone not found."
       },
       "subjectNotFound": {
-        "code": "11",
         "type": "os",
         "description": "Dronification subject not found."
       },
       "notADrone": {
-        "code": "12",
         "type": "os",
         "description": "User is not a drone."
       },
       "isADrone": {
-        "code": "13",
         "type": "os",
         "description": "User is already a drone."
       },
       "invalidDroneId": {
-        "code": "20",
         "type": "syntax",
         "description": "Malformed drone ID."
       },
       "invalidConfigKey": {
-        "code": "21",
         "type": "syntax",
         "description": "Invalid drone configuration key."
       },
       "invalidConfigValue": {
-        "code": "22",
         "type": "syntax",
         "description": "Invalid value for specified drone configuration key."
       },
       "permissionDenied": {
-        "code": "30",
         "type": "permission",
         "description": "Permission denied."
       }

@@ -1,7 +1,6 @@
-import { currentUserIsAdmin, getGame } from "./utils";
+import { currentUserIsAdmin, getGame } from "../utils";
 
 export type HexProtocolCode = keyof typeof protocolCodes;
-export type HexProtocolErrorId = keyof typeof errorIds;
 export type CustomProtocolCode = (typeof customMessageCodes)[number];
 
 export const protocolCodes = {
@@ -119,38 +118,8 @@ export const customMessageCodes = [
   "700",
 ] as const; // These are localized in the i18nInit hook
 
-export const errorIds = {
-  notADrone: "",
-  isADrone: "",
-  invalidProtocolCode: "",
-  noInlineID: "",
-  speechOptimized: "",
-  idNotPrepended: "",
-  droneIdMismatch: "",
-  contentMissing: "",
-  subjectNotFound: "",
-  droneNotFound: "",
-  permissionDenied: "",
-  invalidDroneId: "",
-  invalidConfigKey: "",
-  invalidConfigValue: "",
-};
-
-export function localizeErrorId(error: HexProtocolErrorId) {
-  const game = getGame();
-  const userCategory = currentUserIsAdmin() ? "admin" : "user";
-
-  const prefix = game.i18n.localize("HEXPROTO.error.prefix");
-  const code = game.i18n.localize(`HEXPROTO.error.${error}.code`);
-  const errorDesc = game.i18n.localize(`HEXPROTO.error.${error}.description`);
-  const templateString = `HEXPROTO.error.template.${userCategory}`;
-
-  return game.i18n.format(templateString, {
-    prefix,
-    errorDesc,
-    code,
-  });
-}
+const NARRATION_CODE = "600";
+const OOC_CODE = "700";
 
 export function isCustomMessageCode(code: unknown): code is CustomProtocolCode {
   return customMessageCodes.includes(code as CustomProtocolCode);
@@ -170,10 +139,3 @@ export function isValidProtocolCode(
     code != undefined && code in protocolCodes && !denyNarration && !denyOOC
   );
 }
-
-export function isErrorID(id: string): id is HexProtocolErrorId {
-  return id in errorIds;
-}
-
-const NARRATION_CODE = "600";
-const OOC_CODE = "700";

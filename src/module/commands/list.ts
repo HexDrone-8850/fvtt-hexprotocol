@@ -1,6 +1,5 @@
-import { MODULE_ID, type ChatCommandData } from "../config";
-import { localizeErrorId } from "../protocol";
-import { currentUserIsAdmin, getGame } from "../utils";
+import { MODULE_ID, type ChatCommandData } from "../interface-config";
+import { currentUserIsAdmin, generateProtocolError, getGame } from "../utils";
 
 export const listCommand: ChatCommandData = {
   name: "/hc!list",
@@ -20,8 +19,7 @@ function listDronesCallback(
   const isGM = game.user.isGM;
 
   if (!(isGM || isAdmin)) {
-    ui.notifications?.error(localizeErrorId("permissionDenied"));
-    return {};
+    return generateProtocolError("permissionDenied", isAdmin);
   }
 
   const drones = game.users.filter(

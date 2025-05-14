@@ -1,11 +1,11 @@
-import { MODULE_ID, type ChatCommandData } from "../config";
+import { MODULE_ID, type ChatCommandData } from "../interface-config";
 import {
   currentUserIsAdmin,
+  generateProtocolError,
   getDroneById,
   getGame,
   validateDroneId,
 } from "../utils";
-import { localizeErrorId } from "../protocol";
 
 export const unregisterCommand: ChatCommandData = {
   name: "/hc!unregister",
@@ -22,30 +22,27 @@ async function unregisterCallback(
   _messageData: ChatMessage.CreateData,
 ) {
   const game = getGame();
+  const isAdmin = currentUserIsAdmin();
 
-  if (!currentUserIsAdmin()) {
-    ui.notifications?.error(localizeErrorId("permissionDenied"));
-    return {};
+  if (!isAdmin) {
+    return generateProtocolError("permissionDenied", isAdmin);
   }
 
   if (!validateDroneId(parameters)) {
-    ui.notifications?.error(localizeErrorId("invalidDroneId"));
-    return {};
+    return generateProtocolError("invalidDroneId", isAdmin);
   }
 
   const drone = game.users.getName(parameters) ?? getDroneById(parameters);
 
   if (!drone) {
-    ui.notifications?.error(localizeErrorId("droneNotFound"));
-    return {};
+    return generateProtocolError("droneNotFound", isAdmin);
   }
 
   const username = drone.name;
   const droneId = drone.getFlag("hexprotocol", "droneId");
 
   if (!droneId) {
-    ui.notifications?.error(localizeErrorId("notADrone"));
-    return {};
+    return generateProtocolError("notADrone", isAdmin);
   }
 
   await drone.unsetFlag("hexprotocol", "droneId");

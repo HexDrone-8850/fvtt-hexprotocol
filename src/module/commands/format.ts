@@ -1,16 +1,9 @@
-import { MODULE_ID, type ChatCommandData } from "../config";
-import {
-  protocolCodes,
-  type HexProtocolCode,
-  type HexProtocolErrorId,
-} from "../protocol";
+import { MODULE_ID, type ChatCommandData } from "../interface-config";
+import { protocolCodes, type HexProtocolCode } from "../protocol/protocol";
+import { type HexProtocolErrorId } from "../protocol/error-handling";
 
-import { currentUserIsAdmin, getGame } from "../utils";
-import {
-  isValidProtocolCode,
-  isCustomMessageCode,
-  localizeErrorId,
-} from "../protocol";
+import { currentUserIsAdmin, generateProtocolError, getGame } from "../utils";
+import { isValidProtocolCode, isCustomMessageCode } from "../protocol/protocol";
 
 interface ProtocolMsgParams {
   droneId: string;
@@ -33,12 +26,17 @@ function formatMsgCallback(
   parameters: string,
   _messageData: ChatMessage.CreateData,
 ) {
-  const { droneId: droneId, code, message, error } = validateParams(parameters);
+  const isAdmin = currentUserIsAdmin();
+  const {
+    droneId: droneId,
+    code,
+    message,
+    error,
+  } = validateParams(parameters, isAdmin);
 
   // If error is set at all, we've got an error
   if (error) {
-    ui.notifications?.error(localizeErrorId(error));
-    return {};
+    return generateProtocolError(error, isAdmin);
   }
 
   const i18n = getGame().i18n;
@@ -71,7 +69,7 @@ function formatMsgCallback(
   };
 }
 
-function validateParams(params: string): ProtocolMsgParams {
+function validateParams(params: string, isAdmin = false): ProtocolMsgParams {
   const regex = /^((?<id>\d{4}) )??(?<msgCode>\d{3})(?: (?<msg>.*))?$/;
 
   const { id, msgCode, msg } = params.match(regex)?.groups ?? {};
@@ -84,7 +82,6 @@ function validateParams(params: string): ProtocolMsgParams {
   // If an ID was provided, use that; otherwise, use the stored one
   const storedID = user.getFlag("hexprotocol", "droneId");
   const droneId = id ?? storedID;
-  const isAdmin = currentUserIsAdmin();
 
   const optimizeSpeech =
     user.getFlag("hexprotocol", "optimizeSpeech") && !isAdmin;

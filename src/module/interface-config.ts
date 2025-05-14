@@ -1,7 +1,7 @@
 import type { EmptyObject, MaybePromise } from "fvtt-types/utils";
-import { errorIds, protocolCodes, type HexProtocolCode } from "./protocol";
+import { protocolCodes, type HexProtocolCode } from "./protocol/protocol";
+import { errorIds } from "./protocol/error-handling";
 import { getGame } from "./utils";
-import { isErrorID } from "./protocol";
 
 declare global {
   interface FlagConfig {
@@ -62,18 +62,12 @@ type ChatCommandCallbackResult =
 
 export const MODULE_ID = "hexprotocol";
 
-// Localize module strings
-Hooks.on("ready", () => {
+export function localizeModuleStrings() {
   const i18n = getGame().i18n;
 
   // Localize error messages
-  const prefix = i18n.localize("HEXPROTO.error.prefix");
-  Object.keys(errorIds).forEach((key) => {
-    if (isErrorID(key)) {
-      errorIds[key] = i18n.format(`HEXPROTO.error.${key}`, {
-        prefix,
-      });
-    }
+  Object.entries(errorIds).forEach(([id, data]) => {
+    data.desc = i18n.localize(`HEXPROTO.error.${id}.description`);
   });
 
   // Localize protocol categories
@@ -82,4 +76,4 @@ Hooks.on("ready", () => {
       `HEXPROTO.protocol.categories.${val}`,
     );
   });
-});
+}

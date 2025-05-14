@@ -3,10 +3,11 @@ import {
   protocolConfigKeys,
   type ChatCommandData,
   type ProtocolConfigKey,
-} from "../config";
-import { localizeErrorId } from "../protocol";
+} from "../interface-config";
+
 import {
   currentUserIsAdmin,
+  generateProtocolError,
   getDroneById,
   getDroneConfig,
   getGame,
@@ -28,10 +29,10 @@ async function droneConfigCallback(
   _messageData: ChatMessage.CreateData,
 ) {
   const game = getGame();
+  const isAdmin = currentUserIsAdmin();
 
-  if (!currentUserIsAdmin()) {
-    ui.notifications?.error(localizeErrorId("permissionDenied"));
-    return {};
+  if (!isAdmin) {
+    return generateProtocolError("permissionDenied", isAdmin);
   }
 
   // /^(?<key>droneId|isAdmin)\s+(?<value>true|false|1|0)/
@@ -49,20 +50,17 @@ async function droneConfigCallback(
     parameters.match(regex)?.groups ?? {};
 
   if (!validateDroneId(droneId)) {
-    ui.notifications?.error(localizeErrorId("invalidDroneId"));
-    return {};
+    return generateProtocolError("invalidDroneId", isAdmin);
   }
 
   const drone = getDroneById(droneId);
 
   if (!drone || !droneId) {
-    ui.notifications?.error(localizeErrorId("droneNotFound"));
-    return {};
+    return generateProtocolError("droneNotFound", isAdmin);
   }
 
   if (!key || !validateConfigKey(key)) {
-    ui.notifications?.error(localizeErrorId("invalidConfigKey"));
-    return {};
+    return generateProtocolError("invalidConfigKey", isAdmin);
   }
 
   const updateDroneId = key === "droneId";
@@ -72,8 +70,7 @@ async function droneConfigCallback(
     !validateConfigValue(value) ||
     (updateDroneId && !validateDroneId(value))
   ) {
-    ui.notifications?.error(localizeErrorId("invalidConfigValue"));
-    return {};
+    return generateProtocolError("invalidConfigValue", isAdmin);
   }
 
   // Find a neater way to do this later?

@@ -1,6 +1,10 @@
-import { MODULE_ID, type ChatCommandData } from "../config";
-import { currentUserIsAdmin, getGame, randomString } from "../utils";
-import { localizeErrorId } from "../protocol";
+import { MODULE_ID, type ChatCommandData } from "../interface-config";
+import {
+  currentUserIsAdmin,
+  generateProtocolError,
+  getGame,
+  randomString,
+} from "../utils";
 
 export const registerCommand: ChatCommandData = {
   name: "/hc!register",
@@ -17,10 +21,10 @@ async function registerCallback(
   _messageData: ChatMessage.CreateData,
 ) {
   const game = getGame();
+  const isAdmin = currentUserIsAdmin();
 
-  if (!currentUserIsAdmin()) {
-    ui.notifications?.error(localizeErrorId("permissionDenied"));
-    return {};
+  if (!isAdmin) {
+    return generateProtocolError("permissionDenied", isAdmin);
   }
 
   const regex = /^(?<uname>.*)(\s(?<id>\d{4}))$/;
@@ -32,14 +36,12 @@ async function registerCallback(
   const subject = game.users.getName(username);
 
   if (!subject) {
-    ui.notifications?.error(localizeErrorId("subjectNotFound"));
-    return {};
+    return generateProtocolError("subjectNotFound", isAdmin);
   }
 
   // Check if user is already a drone (ERROR)
   if (subject.getFlag("hexprotocol", "droneId")) {
-    ui.notifications?.error(localizeErrorId("isADrone"));
-    return {};
+    return generateProtocolError("isADrone", isAdmin);
   }
 
   // Generate a random drone ID if none was given

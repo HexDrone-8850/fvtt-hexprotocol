@@ -1,4 +1,9 @@
-import type { ProtocolConfigKey, ProtocolConfigValue } from "./config";
+import type {
+  ProtocolConfigKey,
+  ProtocolConfigValue,
+} from "./interface-config";
+import { type HexProtocolErrorId } from "./protocol/error-handling";
+import { localizeError } from "./protocol/error-handling";
 
 export function getGame(): ReadyGame {
   if (game instanceof Game && game.ready) {
@@ -45,4 +50,22 @@ export function currentUserIsAdmin() {
   const user = getGame().user;
 
   return user.getFlag("hexprotocol", "isAdmin") || user.isGM;
+}
+
+export function generateProtocolError(
+  errorId: HexProtocolErrorId,
+  isAdmin = false,
+) {
+  const game = getGame();
+  const content = localizeError(errorId, isAdmin);
+
+  ui.notifications?.error(content);
+
+  return {
+    content,
+    speaker: {
+      alias: game.i18n.localize("HEXPROTO.chatAlias.hexAI"),
+    },
+    whisper: [game.user.id],
+  };
 }

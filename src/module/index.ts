@@ -4,9 +4,13 @@ import { formatMsgCommand } from "./commands/format";
 import { listCommand } from "./commands/list";
 import { statusCommand } from "./commands/status";
 import { unregisterCommand } from "./commands/unregister";
-import type { ChatCommandData } from "./config";
+import {
+  localizeModuleStrings,
+  type ChatCommandData,
+} from "./interface-config";
 import { getGame } from "./utils";
 import { registerModuleSettings } from "./settings";
+import { explainCommand } from "./commands/explain";
 
 interface ChatCommanderObject {
   register: (data: ChatCommandData) => void;
@@ -19,6 +23,7 @@ const chatCommands = [
   statusCommand,
   configMsgCommand,
   listCommand,
+  explainCommand,
 ];
 
 Hooks.on("chatCommandsReady", (commands: ChatCommanderObject) => {
@@ -33,4 +38,5 @@ Hooks.on("chatCommandsReady", (commands: ChatCommanderObject) => {
 
 Hooks.on("ready", () => {
   registerModuleSettings();
+  localizeModuleStrings();
 });
