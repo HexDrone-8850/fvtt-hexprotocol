@@ -12,8 +12,8 @@
     },
     "cmd": {
       "hex.description": "Generate ⬡-Protocol messages.",
-      "dronify.description": "Assign a drone ID to a user.",
-      "unassign.description": "Unassign a drone.",
+      "register.description": "Register a drone and assign an ID.",
+      "unregister.description": "Unregister a drone.",
       "status.description": "Show drone status.",
       "config.description": "Configure drones.",
       "list.description": "List drones."
@@ -39,10 +39,8 @@
       "true": "True",
       "false": "False"
     },
-    "dronify": {
-      "assign": "Drone ID #{droneId} assigned to {username}.",
-      "unassign": "{username} detached from collective (was #{droneId})."
-    },
+    "register": "{username} registered with ID #{droneId}.",
+    "unregister": "{username} unregistered (was #{droneId}).",
     "protocol": {
       "template": "{droneId} :: Code {code} :: {category} :: {details}",
       "categories": {

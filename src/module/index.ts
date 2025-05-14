@@ -1,9 +1,9 @@
 import { configMsgCommand } from "./commands/drone-config";
-import { dronifyCommand } from "./commands/assign";
+import { registerCommand } from "./commands/register";
 import { formatMsgCommand } from "./commands/format";
 import { listCommand } from "./commands/list";
 import { statusCommand } from "./commands/status";
-import { unassignCommand } from "./commands/unassign";
+import { unregisterCommand } from "./commands/unregister";
 import type { ChatCommandData } from "./config";
 import { getGame } from "./utils";
 import { registerModuleSettings } from "./settings";
@@ -14,8 +14,8 @@ interface ChatCommanderObject {
 
 const chatCommands = [
   formatMsgCommand,
-  dronifyCommand,
-  unassignCommand,
+  registerCommand,
+  unregisterCommand,
   statusCommand,
   configMsgCommand,
   listCommand,

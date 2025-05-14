@@ -2,16 +2,16 @@ import { MODULE_ID, type ChatCommandData } from "../config";
 import { currentUserIsAdmin, getGame, randomString } from "../utils";
 import { localizeErrorId } from "../protocol";
 
-export const dronifyCommand: ChatCommandData = {
-  name: "/hc!assign",
+export const registerCommand: ChatCommandData = {
+  name: "/hc!register",
   aliases: ["/hc!dronify"],
   module: MODULE_ID,
   description: "HEXPROTO.cmd.dronify.description",
   icon: '<img src="icons/svg/sun.svg" />',
-  callback: dronifyCallback,
+  callback: registerCallback,
 };
 
-async function dronifyCallback(
+async function registerCallback(
   chat: ChatLog,
   parameters: string,
   _messageData: ChatMessage.CreateData,
@@ -54,7 +54,7 @@ async function dronifyCallback(
   }
 
   // Generate output
-  const output = game.i18n.format("HEXPROTO.dronify.assign", {
+  const output = game.i18n.format("HEXPROTO.register", {
     droneId,
     username,
   });

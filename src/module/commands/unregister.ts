@@ -7,16 +7,16 @@ import {
 } from "../utils";
 import { localizeErrorId } from "../protocol";
 
-export const unassignCommand: ChatCommandData = {
-  name: "/hc!unassign",
+export const unregisterCommand: ChatCommandData = {
+  name: "/hc!unregister",
   aliases: ["/hc!undronify"],
   module: MODULE_ID,
-  description: "HEXPROTO.cmd.unassign.description",
+  description: "HEXPROTO.cmd.unregister.description",
   icon: '<img src="icons/svg/light-off.svg" />',
-  callback: unassignCallback,
+  callback: unregisterCallback,
 };
 
-async function unassignCallback(
+async function unregisterCallback(
   chat: ChatLog,
   parameters: string,
   _messageData: ChatMessage.CreateData,
@@ -51,7 +51,7 @@ async function unassignCallback(
   await drone.unsetFlag("hexprotocol", "droneId");
 
   // Generate output
-  const msg = game.i18n.format("HEXPROTO.dronify.unassign", {
+  const msg = game.i18n.format("HEXPROTO.unregister", {
     username,
     droneId,
   });
