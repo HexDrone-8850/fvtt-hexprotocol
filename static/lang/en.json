@@ -8,6 +8,10 @@
       "allowOOC": {
         "name": "Enable protocol extension 700",
         "hint": "Enables protocol extension code 700 for out-of-character transmissions."
+      },
+      "bullyMode": {
+        "name": "Bully Mode",
+        "hint": "Bullies non-admin users by displaying opaque error codes instead of anything meaningful."
       }
     },
     "cmd": {

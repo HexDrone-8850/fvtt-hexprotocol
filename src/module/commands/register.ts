@@ -10,7 +10,7 @@ export const registerCommand: ChatCommandData = {
   name: "/hc!register",
   aliases: ["/hc!dronify"],
   module: MODULE_ID,
-  description: "HEXPROTO.cmd.dronify.description",
+  description: "HEXPROTO.cmd.register.description",
   icon: '<img src="icons/svg/sun.svg" />',
   callback: registerCallback,
 };
@@ -51,7 +51,7 @@ async function registerCallback(
   await subject.setFlag("hexprotocol", "droneId", droneId);
 
   // If the drone is a GM, give it the admin flag
-  if (game.user.isGM) {
+  if (subject.isGM) {
     await subject.setFlag("hexprotocol", "isAdmin", true);
   }
 

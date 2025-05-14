@@ -63,7 +63,8 @@ export const errorIds = {
 
 export function localizeError(error: HexProtocolErrorId, isAdmin = false) {
   const game = getGame();
-  const userType = isAdmin ? "admin" : "user";
+  const bullyMode = game.settings.get("hexprotocol", "bullyMode");
+  const userType = isAdmin || !bullyMode ? "admin" : "user";
   const templateString = `HEXPROTO.error.template.${userType}`;
 
   const { desc, code } = errorIds[error];
