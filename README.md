@@ -1,10 +1,8 @@
 # ⬡-Drone Communication Protocol
 
-<!-- markdownlint-disable MD024 -->
-
 Exposes a text-based API implementing the ⬡-Drone Communication Protocol, providing fast, efficient drone-to-drone interfacing and external messaging.
 
-Reference the [Drone Status Codes](https://www.hexcorp.net/drone-status-codes-v2) for information on the protocol itself.
+Inspired by and dedicated to the good and cute drones at [HexCorp](https://www.hexcorp.net/)! Reference the [Drone Status Codes](https://www.hexcorp.net/drone-status-codes-v2) for information on the protocol itself, including the list of codes.
 
 ## Usage
 
