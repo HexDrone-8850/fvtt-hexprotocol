@@ -57,9 +57,11 @@ export function generateProtocolError(
   isAdmin = false,
 ) {
   const game = getGame();
-  const content = localizeError(errorId, isAdmin);
+  const error = localizeError(errorId, isAdmin);
 
-  ui.notifications?.error(content);
+  ui.notifications?.error(error);
+
+  const content = `<span class="hexproto-output">${error}</span>`;
 
   return {
     content,

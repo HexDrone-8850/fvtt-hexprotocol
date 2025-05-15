@@ -61,7 +61,7 @@ async function registerCallback(
     username,
   });
   return {
-    content: `<code>${output}</code>`,
+    content: `<span class="hexproto-output">${output}</span>`,
     speaker: {
       alias: game.i18n.localize("HEXPROTO.chatAlias.hexAI"),
     },

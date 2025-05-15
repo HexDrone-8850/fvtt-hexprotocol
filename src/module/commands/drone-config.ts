@@ -93,7 +93,7 @@ async function droneConfigCallback(
   });
 
   return {
-    content: `<code>${msg}</code>`,
+    content: `<span class="hexproto-output">${msg}</span>`,
     speaker: {
       alias: game.i18n.localize("HEXPROTO.chatAlias.hexAI"),
     },

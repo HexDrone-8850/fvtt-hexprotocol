@@ -59,7 +59,7 @@ function formatMsgCallback(
 
   const addedOutput = message && !isCustomCode ? ` :: ${message}` : "";
 
-  const content = `<code>${baseOutput}${addedOutput}</code>`;
+  const content = `<span class="hexproto-output">${baseOutput}${addedOutput}</span>`;
 
   return {
     content,

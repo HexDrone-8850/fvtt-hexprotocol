@@ -30,7 +30,7 @@ function listDronesCallback(
     const droneId = drone.getFlag("hexprotocol", "droneId");
     const droneUser = drone.name;
 
-    return `<code>${droneId} :: ${droneUser}</code>`;
+    return `<span class="hexproto-output">${droneId} :: ${droneUser}</span>`;
   });
 
   const msg = game.i18n.localize("HEXPROTO.list.header");

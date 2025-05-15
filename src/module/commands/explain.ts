@@ -23,11 +23,13 @@ function explainCallback(
 
   const code = parameters.trim();
 
-  const content = getErrorByCode(code);
+  const error = getErrorByCode(code);
 
-  if (!content) {
+  if (!error) {
     return generateProtocolError("unknownErrorCode", isAdmin);
   }
+
+  const content = `<span class="hexproto-output">${error}</span>`;
 
   return {
     content,
