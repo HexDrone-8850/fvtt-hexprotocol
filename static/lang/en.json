@@ -21,7 +21,8 @@
       "status.description": "Show drone status.",
       "config.description": "Configure drones.",
       "list.description": "List drones.",
-      "explain.description": "Explain a ⬡-Protocol error code."
+      "explain.description": "Explain a ⬡-Protocol error code.",
+      "generateId.description": "Generate an 11-character ID."
     },
     "chatAlias": {
       "hexDrone": "⬡-Drone #{droneId}",

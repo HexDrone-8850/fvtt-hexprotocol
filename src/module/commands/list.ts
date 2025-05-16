@@ -16,9 +16,8 @@ function listDronesCallback(
 ) {
   const game = getGame();
   const isAdmin = currentUserIsAdmin();
-  const isGM = game.user.isGM;
 
-  if (!(isGM || isAdmin)) {
+  if (!isAdmin) {
     return generateProtocolError("permissionDenied", isAdmin);
   }
 

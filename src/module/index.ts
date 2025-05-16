@@ -11,6 +11,7 @@ import {
 import { getGame } from "./utils";
 import { registerModuleSettings } from "./settings";
 import { explainCommand } from "./commands/explain";
+import { generateIdCommand } from "./commands/generate-id";
 
 interface ChatCommanderObject {
   register: (data: ChatCommandData) => void;
@@ -24,6 +25,7 @@ const chatCommands = [
   configMsgCommand,
   listCommand,
   explainCommand,
+  generateIdCommand,
 ];
 
 Hooks.on("chatCommandsReady", (commands: ChatCommanderObject) => {
