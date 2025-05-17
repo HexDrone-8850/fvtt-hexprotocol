@@ -9,6 +9,10 @@
         "name": "Enable protocol extension 700",
         "hint": "Enables protocol extension code 700 for out-of-character transmissions."
       },
+      "useIdentifyingAlias": {
+        "name": "Use identifying chat alias",
+        "hint": "Use a chat alias that identifies the sender of a ⬡-Protocol transmission."
+      },
       "bullyMode": {
         "name": "Bully Mode",
         "hint": "Bullies non-admin users by displaying opaque error codes instead of anything meaningful."
@@ -26,7 +30,8 @@
     },
     "chatAlias": {
       "hexDrone": "⬡-Drone #{droneId}",
-      "hexAI": "⬡-AI"
+      "hexAI": "⬡-AI",
+      "transmission": "⬡-Protocol Transmission"
     },
     "list": {
       "header": "Drone List"

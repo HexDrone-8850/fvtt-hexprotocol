@@ -39,7 +39,7 @@ function formatMsgCallback(
     return generateProtocolError(error, isAdmin);
   }
 
-  const i18n = getGame().i18n;
+  const { i18n, settings } = getGame();
 
   // Otherwise, we have valid data
   const isCustomCode = isCustomMessageCode(code);
@@ -61,10 +61,14 @@ function formatMsgCallback(
 
   const content = `<span class="hexproto-output">${baseOutput}${addedOutput}</span>`;
 
+  const chatAlias = settings.get("hexprotocol", "useIdentifyingAlias")
+    ? "hexDrone"
+    : "transmission";
+
   return {
     content,
     speaker: {
-      alias: i18n.format("HEXPROTO.chatAlias.hexDrone", { droneId }),
+      alias: i18n.format(`HEXPROTO.chatAlias.${chatAlias}`, { droneId }),
     },
     flags: {
       hexprotocol: {

@@ -4,6 +4,7 @@ declare module "fvtt-types/configuration" {
   interface SettingConfig {
     "hexprotocol.allowNarration": boolean;
     "hexprotocol.allowOOC": boolean;
+    "hexprotocol.useIdentifyingAlias": boolean;
     "hexprotocol.bullyMode": boolean;
   }
 }
@@ -24,6 +25,16 @@ export function registerModuleSettings() {
   settings.register("hexprotocol", "allowOOC", {
     name: i18n.localize("HEXPROTO.settings.allowOOC.name"),
     hint: i18n.localize("HEXPROTO.settings.allowOOC.hint"),
+    scope: "world",
+    config: true,
+    requiresReload: false,
+    type: Boolean,
+    default: false,
+  });
+
+  settings.register("hexprotocol", "useIdentifyingAlias", {
+    name: i18n.localize("HEXPROTO.settings.useIdentifyingAlias.name"),
+    hint: i18n.localize("HEXPROTO.settings.useIdentifyingAlias.hint"),
     scope: "world",
     config: true,
     requiresReload: false,
