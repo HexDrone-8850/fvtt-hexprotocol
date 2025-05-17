@@ -118,8 +118,8 @@ export const customMessageCodes = [
   "700",
 ] as const; // These are localized in the i18nInit hook
 
-const NARRATION_CODE = "600";
-const OOC_CODE = "700";
+export const NARRATION_CODE = "600" as const;
+export const OOC_CODE = "700" as const;
 
 export function isCustomMessageCode(code: unknown): code is CustomProtocolCode {
   return customMessageCodes.includes(code as CustomProtocolCode);

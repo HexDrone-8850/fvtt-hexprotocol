@@ -26,7 +26,8 @@
       "config.description": "Configure drones.",
       "list.description": "List drones.",
       "explain.description": "Explain a ⬡-Protocol error code.",
-      "generateId.description": "Generate an 11-character ID."
+      "generateId.description": "Generate an 11-character ID.",
+      "narrate.description": "Alias for /hc!protocol 600 <msg>"
     },
     "chatAlias": {
       "hexDrone": "⬡-Drone #{droneId}",

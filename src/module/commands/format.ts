@@ -45,16 +45,18 @@ function formatMsgCallback(
     ? message
     : i18n.localize(`HEXPROTO.protocol.details.${code as string}`);
 
-  const baseOutput = i18n.format("HEXPROTO.protocol.template", {
+  let output = i18n.format("HEXPROTO.protocol.template", {
     droneId,
     code: `${code}`,
     category,
     details,
   });
 
-  const addedOutput = message && !isCustomCode ? ` :: ${message}` : "";
+  if (message && !isCustomCode) {
+    output += ` :: ${message}`;
+  }
 
-  const content = `<span class="hexproto-output">${baseOutput}${addedOutput}</span>`;
+  const content = `<span class="hexproto-output">${output}</span>`;
 
   const chatAlias = settings.get("hexprotocol", "useIdentifyingAlias")
     ? "hexDrone"
@@ -85,7 +87,7 @@ function validateParams(params: string, isAdmin = false): ProtocolMsgParams {
 
   // If an ID was provided, use that; otherwise, use the stored one
   const storedID = user.getFlag("hexprotocol", "droneId");
-  const droneId = id ?? storedID;
+  const droneId = id ?? storedID ?? "";
 
   const optimizeSpeech =
     user.getFlag("hexprotocol", "optimizeSpeech") && !isAdmin;
@@ -96,7 +98,7 @@ function validateParams(params: string, isAdmin = false): ProtocolMsgParams {
 
   // We can cheat here with that `as` since if the code is invalid it'll never get checked
   const output: ProtocolMsgParams = {
-    droneId: "",
+    droneId,
     code: code as HexProtocolCode,
     message,
   };
