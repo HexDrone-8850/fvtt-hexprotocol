@@ -49,10 +49,10 @@ export const PROTOCOL_CONFIG_KEYS = [
 
 interface HexProtocolConfig {
   // 4 digits
-  droneId: string;
-  isAdmin: boolean;
-  optimizeSpeech: boolean;
-  forcePrependId: boolean;
+  droneId?: string;
+  isAdmin?: boolean;
+  optimizeSpeech?: boolean;
+  forcePrependId?: boolean;
 }
 
 type ChatCommandCallbackResult =

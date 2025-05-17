@@ -12,7 +12,7 @@ import { getGame } from "./utils";
 import { registerModuleSettings } from "./settings";
 import { explainCommand } from "./commands/explain";
 import { generateIdCommand } from "./commands/generate-id";
-import { replaceChatPortrait } from "./api/chat-portrait";
+import { replaceChatPortrait } from "./api-integration/chat-portrait";
 
 interface ChatCommanderObject {
   register: (data: ChatCommandData) => void;

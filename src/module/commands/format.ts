@@ -27,12 +27,7 @@ function formatMsgCallback(
   _messageData: ChatMessage.CreateData,
 ): ChatMessage.CreateData {
   const isAdmin = currentUserIsAdmin();
-  const {
-    droneId: droneId,
-    code,
-    message,
-    error,
-  } = validateParams(parameters, isAdmin);
+  const { droneId, code, message, error } = validateParams(parameters, isAdmin);
 
   // If error is set at all, we've got an error
   if (error) {
@@ -101,7 +96,7 @@ function validateParams(params: string, isAdmin = false): ProtocolMsgParams {
 
   // We can cheat here with that `as` since if the code is invalid it'll never get checked
   const output: ProtocolMsgParams = {
-    droneId,
+    droneId: "",
     code: code as HexProtocolCode,
     message,
   };
