@@ -3,7 +3,7 @@ import { protocolCodes, type HexProtocolCode } from "./protocol/protocol";
 import { errorIds } from "./protocol/error-handling";
 import { getGame } from "./utils";
 
-declare global {
+declare module "fvtt-types/configuration" {
   interface FlagConfig {
     User: {
       hexprotocol: HexProtocolConfig;
@@ -40,7 +40,7 @@ export interface ChatCommandData {
 
 // TODO: Figure out a more DRY way to do this
 // As of now, protocolConfigKeys and HexProtocolConfig have to be in sync
-export const protocolConfigKeys = [
+export const PROTOCOL_CONFIG_KEYS = [
   "droneId",
   "isAdmin",
   "optimizeSpeech",
@@ -60,7 +60,7 @@ type ChatCommandCallbackResult =
   | EmptyObject
   | undefined;
 
-export const MODULE_ID = "hexprotocol";
+export const MODULE_ID = "hexprotocol" as const;
 
 export function localizeModuleStrings() {
   const i18n = getGame().i18n;

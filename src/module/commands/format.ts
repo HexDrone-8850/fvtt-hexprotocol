@@ -25,7 +25,7 @@ function formatMsgCallback(
   chat: ChatLog,
   parameters: string,
   _messageData: ChatMessage.CreateData,
-) {
+): ChatMessage.CreateData {
   const isAdmin = currentUserIsAdmin();
   const {
     droneId: droneId,
@@ -65,6 +65,11 @@ function formatMsgCallback(
     content,
     speaker: {
       alias: i18n.format("HEXPROTO.chatAlias.hexDrone", { droneId }),
+    },
+    flags: {
+      hexprotocol: {
+        replaceChatPortrait: "drone",
+      },
     },
   };
 }

@@ -35,6 +35,12 @@
         "id": "_chatcommands",
         "manifest": "https://gitlab.com/woodentavern/foundryvtt-chat-command-lib/-/raw/master/src/module.json"
       }
+    ],
+    "recommends": [
+      {
+        "id": "chat-portrait",
+        "manifest": "https://raw.githubusercontent.com/p4535992/foundryvtt-chat-portrait/refs/heads/master/src/module.json"
+      }
     ]
   }
 }

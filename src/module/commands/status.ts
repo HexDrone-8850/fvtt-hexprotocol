@@ -19,7 +19,7 @@ async function statusCallback(
   chat: ChatLog,
   parameters: string,
   _messageData: ChatMessage.CreateData,
-) {
+): Promise<ChatMessage.CreateData> {
   const game = getGame();
   const isAdmin = currentUserIsAdmin();
   const currentUserDroneId = game.user.getFlag("hexprotocol", "droneId");
@@ -57,5 +57,10 @@ async function statusCallback(
       alias: game.i18n.localize("HEXPROTO.chatAlias.hexAI"),
     },
     whisper: [game.user.id],
+    flags: {
+      hexprotocol: {
+        replaceChatPortrait: "ai",
+      },
+    },
   };
 }

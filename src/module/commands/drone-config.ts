@@ -1,6 +1,6 @@
 import {
   MODULE_ID,
-  protocolConfigKeys,
+  PROTOCOL_CONFIG_KEYS,
   type ChatCommandData,
   type ProtocolConfigKey,
 } from "../interface-config";
@@ -27,7 +27,7 @@ async function droneConfigCallback(
   chat: ChatLog,
   parameters: string,
   _messageData: ChatMessage.CreateData,
-) {
+): Promise<ChatMessage.CreateData> {
   const game = getGame();
   const isAdmin = currentUserIsAdmin();
 
@@ -37,7 +37,7 @@ async function droneConfigCallback(
 
   // /^(?<key>droneId|isAdmin)\s+(?<value>true|false|1|0)/
 
-  const protocolKeys = protocolConfigKeys.join("|");
+  const protocolKeys = PROTOCOL_CONFIG_KEYS.join("|");
   const regex = new RegExp(
     `^(?<droneId>\\d{4})\\s+(?<key>${protocolKeys})\\s+(?<value>true|false|1|0|\\d{4})`,
   );
@@ -98,6 +98,11 @@ async function droneConfigCallback(
       alias: game.i18n.localize("HEXPROTO.chatAlias.hexAI"),
     },
     whisper: [game.user.id],
+    flags: {
+      hexprotocol: {
+        replaceChatPortrait: "ai",
+      },
+    },
   };
 }
 
@@ -112,5 +117,5 @@ function validateConfigValue(value: string | undefined) {
 }
 
 function validateConfigKey(key: string | undefined) {
-  return key && protocolConfigKeys.includes(key as ProtocolConfigKey);
+  return key && PROTOCOL_CONFIG_KEYS.includes(key as ProtocolConfigKey);
 }

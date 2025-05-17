@@ -13,7 +13,7 @@ function listDronesCallback(
   _chat: ChatLog,
   _parameters: string,
   _messageData: ChatMessage.CreateData,
-) {
+): ChatMessage.CreateData {
   const game = getGame();
   const isAdmin = currentUserIsAdmin();
 
@@ -42,5 +42,10 @@ function listDronesCallback(
       alias: game.i18n.localize("HEXPROTO.chatAlias.hexAI"),
     },
     whisper: [game.user.id],
+    flags: {
+      hexprotocol: {
+        replaceChatPortrait: "ai",
+      },
+    },
   };
 }

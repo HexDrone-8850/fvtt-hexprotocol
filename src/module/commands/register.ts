@@ -19,7 +19,7 @@ async function registerCallback(
   chat: ChatLog,
   parameters: string,
   _messageData: ChatMessage.CreateData,
-) {
+): Promise<ChatMessage.CreateData> {
   const game = getGame();
   const isAdmin = currentUserIsAdmin();
 
@@ -66,5 +66,10 @@ async function registerCallback(
       alias: game.i18n.localize("HEXPROTO.chatAlias.hexAI"),
     },
     whisper: [game.user.id],
+    flags: {
+      hexprotocol: {
+        replaceChatPortrait: "ai",
+      },
+    },
   };
 }

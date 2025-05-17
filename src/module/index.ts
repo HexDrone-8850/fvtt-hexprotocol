@@ -12,6 +12,7 @@ import { getGame } from "./utils";
 import { registerModuleSettings } from "./settings";
 import { explainCommand } from "./commands/explain";
 import { generateIdCommand } from "./commands/generate-id";
+import { replaceChatPortrait } from "./api/chat-portrait";
 
 interface ChatCommanderObject {
   register: (data: ChatCommandData) => void;
@@ -42,3 +43,5 @@ Hooks.on("ready", () => {
   registerModuleSettings();
   localizeModuleStrings();
 });
+
+Hooks.on("ChatPortraitReplaceData", replaceChatPortrait);
