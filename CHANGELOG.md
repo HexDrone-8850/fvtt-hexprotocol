@@ -2,6 +2,12 @@
 
 <!-- markdownlint-disable MD024 -->
 
+## [1.2.1] - 2025-05-17
+
+### Fixed
+
+- Fix missing CSS entry in module.json
+
 ## [1.2.0] - 2025-05-17
 
 ### Added
@@ -23,6 +29,7 @@
 
 *First release.*
 
+[1.2.1]: https://github.com/HexDrone-8850/fvtt-hexprotocol/releases/tag/v1.2.1
 [1.2.0]: https://github.com/HexDrone-8850/fvtt-hexprotocol/releases/tag/v1.2.0
 [1.1.0]: https://github.com/HexDrone-8850/fvtt-hexprotocol/releases/tag/v1.1.0
 [1.0.0]: https://github.com/HexDrone-8850/fvtt-hexprotocol/releases/tag/v1.0.0
