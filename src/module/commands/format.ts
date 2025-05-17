@@ -125,8 +125,7 @@ function validateParams(params: string, isAdmin = false): ProtocolMsgParams {
   }
 
   // Is its speech optimized and it's a forbidden code?
-  // Hack to support DroneQuest extensions
-  if (optimizeSpeech && (isCustomProtocol || msg) && code != "600") {
+  if (optimizeSpeech && (isCustomProtocol || msg)) {
     output.error ??= "speechOptimized";
   }
 
