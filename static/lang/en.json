@@ -26,7 +26,8 @@
       "narrate": {
         "description": "Deliver narration as AI.",
         "template": "NARRATION: {msg}"
-      }
+      },
+      "ai.description": "Speak in character as Hive AI."
     },
     "chatAlias": {
       "hexDrone": "Drone #{droneId}",

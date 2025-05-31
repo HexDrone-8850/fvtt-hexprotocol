@@ -14,6 +14,7 @@ import { explainCommand } from "./commands/explain";
 import { generateIdCommand } from "./commands/generate-id";
 import { replaceChatPortrait } from "./api-integration/chat-portrait";
 import { narrateCommand } from "./commands/narrate";
+import { aiCommand } from "./commands/ai";
 
 interface ChatCommanderObject {
   register: (data: ChatCommandData) => void;
@@ -29,6 +30,7 @@ const chatCommands = [
   explainCommand,
   generateIdCommand,
   narrateCommand,
+  aiCommand,
 ];
 
 Hooks.on("chatCommandsReady", (commands: ChatCommanderObject) => {

@@ -1,15 +1,14 @@
 import { MODULE_ID, type ChatCommandData } from "../interface-config";
 import { currentUserIsAdmin, generateProtocolError, getGame } from "../utils";
 
-export const narrateCommand: ChatCommandData = {
-  name: "/narrate",
-  aliases: ["/n"],
+export const aiCommand: ChatCommandData = {
+  name: "/ai",
   module: MODULE_ID,
-  description: "HEXPROTO.cmd.narrate.description",
-  callback: narrateCallback,
+  description: "HEXPROTO.cmd.ai.description",
+  callback: aiCallback,
 };
 
-function narrateCallback(
+function aiCallback(
   chat: ChatLog,
   parameters: string,
   _messageData: ChatMessage.CreateData,
@@ -24,11 +23,7 @@ function narrateCallback(
 
   const msg = parameters.trim();
 
-  const message = i18n.format("HEXPROTO.cmd.narrate.template", {
-    msg,
-  });
-
-  const content = `<span class="hexproto-output">${message}</span>`;
+  const content = `<span class="hexproto-output">${msg}</span>`;
 
   return {
     content,
