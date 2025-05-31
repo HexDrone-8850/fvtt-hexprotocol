@@ -2,8 +2,8 @@
   "HEXPROTO": {
     "settings": {
       "allowOOC": {
-        "name": "Enable protocol extension 700",
-        "hint": "Enables protocol extension code 700 for out-of-character transmissions."
+        "name": "Enable protocol extension 600",
+        "hint": "Enables protocol extension code 600 for out-of-character transmissions."
       },
       "useIdentifyingAlias": {
         "name": "Use identifying chat alias",
@@ -23,11 +23,14 @@
       "list.description": "List drones.",
       "explain.description": "Explain a ⬡-Protocol error code.",
       "generateId.description": "Generate an 11-character ID.",
-      "narrate.description": "Alias for /hc!protocol 600 <msg>"
+      "narrate": {
+        "description": "Deliver narration as AI.",
+        "template": "NARRATION: {msg}"
+      }
     },
     "chatAlias": {
       "hexDrone": "Drone #{droneId}",
-      "hexAI": "Sis-AI",
+      "hexAI": "Hive AI",
       "transmission": "⬡-Protocol Transmission"
     },
     "list": {

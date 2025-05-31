@@ -1,5 +1,4 @@
 import { MODULE_ID, type ChatCommandData } from "../interface-config";
-import { NARRATION_CODE, protocolCodes } from "../protocol/protocol";
 import { currentUserIsAdmin, generateProtocolError, getGame } from "../utils";
 
 export const narrateCommand: ChatCommandData = {
@@ -14,7 +13,7 @@ function narrateCallback(
   parameters: string,
   _messageData: ChatMessage.CreateData,
 ): ChatMessage.CreateData {
-  const { user, i18n, settings } = getGame();
+  const { i18n } = getGame();
 
   const isAdmin = currentUserIsAdmin();
 
@@ -22,39 +21,22 @@ function narrateCallback(
     return generateProtocolError("permissionDenied");
   }
 
-  const droneId = user.getFlag("hexprotocol", "droneId");
+  const msg = parameters.trim();
 
-  if (!droneId) {
-    return generateProtocolError("droneNotFound", isAdmin);
-  }
-
-  const code = NARRATION_CODE;
-
-  const category = protocolCodes[code];
-
-  const details = parameters.trim();
-
-  const message = i18n.format("HEXPROTO.protocol.template", {
-    droneId,
-    code,
-    category,
-    details,
+  const message = i18n.format("HEXPROTO.cmd.narrate.template", {
+    msg,
   });
 
   const content = `<span class="hexproto-output">${message}</span>`;
 
-  const chatAlias = settings.get("hexprotocol", "useIdentifyingAlias")
-    ? "hexDrone"
-    : "transmission";
-
   return {
     content,
     speaker: {
-      alias: i18n.format(`HEXPROTO.chatAlias.${chatAlias}`, { droneId }),
+      alias: i18n.localize("HEXPROTO.chatAlias.hexAI"),
     },
     flags: {
       hexprotocol: {
-        replaceChatPortrait: "drone",
+        replaceChatPortrait: "ai",
       },
     },
   };

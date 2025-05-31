@@ -85,8 +85,7 @@ export const protocolCodes = {
   413: "error",
   450: "error",
   500: "response",
-  600: "narration",
-  700: "ooc",
+  600: "ooc",
 };
 
 export const customMessageCodes = [
@@ -112,14 +111,11 @@ export const customMessageCodes = [
   "350",
   // Error
   "450",
-  // Narration
-  "600",
   // OOC
-  "700",
+  "600",
 ] as const; // These are localized in the i18nInit hook
 
-export const NARRATION_CODE = "600" as const;
-export const OOC_CODE = "700" as const;
+export const OOC_CODE = "600" as const;
 
 export function isCustomMessageCode(code: unknown): code is CustomProtocolCode {
   return customMessageCodes.includes(code as CustomProtocolCode);
