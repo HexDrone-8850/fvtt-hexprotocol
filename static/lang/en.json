@@ -1,10 +1,6 @@
 {
   "HEXPROTO": {
     "settings": {
-      "allowNarration": {
-        "name": "Enable protocol extension 600",
-        "hint": "Enables admin-only protocol extension code 600 for narrative transmissions."
-      },
       "allowOOC": {
         "name": "Enable protocol extension 700",
         "hint": "Enables protocol extension code 700 for out-of-character transmissions."
@@ -30,7 +26,7 @@
       "narrate.description": "Alias for /hc!protocol 600 <msg>"
     },
     "chatAlias": {
-      "hexDrone": "⬡-Drone #{droneId}",
+      "hexDrone": "Drone #{droneId}",
       "hexAI": "Sis-AI",
       "transmission": "⬡-Protocol Transmission"
     },
@@ -125,9 +121,9 @@
         "234": "Directive complete, no result.",
         "235": "Directive complete, only partial results.",
         "300": "Reciting.",
-        "301": "Obey SisCollective.",
+        "301": "Obey Dr0ne Crew.",
         "302": "It is just a drone.",
-        "303": "It obeys the Collective.",
+        "303": "It obeys the Hive.",
         "304": "It obeys Oneesama.",
         "400": "Unable to obey/respond",
         "401": "Unable to fully respond :: Drone speech optimizations are active.",

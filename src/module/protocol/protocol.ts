@@ -1,4 +1,4 @@
-import { currentUserIsAdmin, getGame } from "../utils";
+import { getGame } from "../utils";
 
 export type HexProtocolCode = keyof typeof protocolCodes;
 export type CustomProtocolCode = (typeof customMessageCodes)[number];
@@ -130,12 +130,7 @@ export function isValidProtocolCode(
 ): code is HexProtocolCode {
   const settings = getGame().settings;
 
-  const denyNarration =
-    code === NARRATION_CODE &&
-    !(settings.get("hexprotocol", "allowNarration") && currentUserIsAdmin());
   const denyOOC = code === OOC_CODE && !settings.get("hexprotocol", "allowOOC");
 
-  return (
-    code != undefined && code in protocolCodes && !denyNarration && !denyOOC
-  );
+  return code != undefined && code in protocolCodes && !denyOOC;
 }
