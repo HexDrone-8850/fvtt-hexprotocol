@@ -3,6 +3,7 @@ import { currentUserIsAdmin, generateProtocolError, getGame } from "../utils";
 
 export const aiCommand: ChatCommandData = {
   name: "/ai",
+  aliases: ["/a"],
   module: MODULE_ID,
   description: "HEXPROTO.cmd.ai.description",
   callback: aiCallback,
