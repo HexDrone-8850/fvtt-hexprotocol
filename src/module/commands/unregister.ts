@@ -48,7 +48,7 @@ async function unregisterCallback(
   await drone.unsetFlag("hexprotocol", "droneId");
 
   // Generate output
-  const msg = game.i18n.format("HEXPROTO.unregister", {
+  const msg = game.i18n.format("HEXPROTO.cmd.unregister.template", {
     username,
     droneId,
   });

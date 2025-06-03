@@ -56,7 +56,7 @@ async function registerCallback(
   }
 
   // Generate output
-  const output = game.i18n.format("HEXPROTO.register", {
+  const output = game.i18n.format("HEXPROTO.cmd.register.template", {
     droneId,
     username,
   });

@@ -34,7 +34,7 @@ function narrateCallback(
 
   const details = parameters.trim();
 
-  const message = i18n.format("HEXPROTO.protocol.template", {
+  const message = i18n.format("HEXPROTO.cmd.protocol.template", {
     droneId,
     code,
     category,

@@ -73,7 +73,7 @@ export function localizeModuleStrings() {
   // Localize protocol categories
   Object.entries(protocolCodes).forEach(([key, val]) => {
     protocolCodes[key as HexProtocolCode] = i18n.localize(
-      `HEXPROTO.protocol.categories.${val}`,
+      `HEXPROTO.cmd.protocol.categories.${val}`,
     );
   });
 }

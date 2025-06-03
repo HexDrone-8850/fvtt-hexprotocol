@@ -32,7 +32,7 @@ function listDronesCallback(
     return `<span class="hexproto-output">${droneId} :: ${droneUser}</span>`;
   });
 
-  const msg = game.i18n.localize("HEXPROTO.list.header");
+  const msg = game.i18n.localize("HEXPROTO.cmd.list.header");
 
   const content = [`<h2>${msg}</h2>`, ...droneList].join("\n");
 

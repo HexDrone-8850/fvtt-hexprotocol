@@ -80,12 +80,12 @@ async function droneConfigCallback(
 
   const oldValue =
     getDroneConfig(droneId, key) ??
-    game.i18n.localize("HEXPROTO.config.undefined");
+    game.i18n.localize("HEXPROTO.cmd.config.undefined");
 
   await setDroneConfig(droneId, key, newValue);
 
   // Generate output
-  const msg = game.i18n.format("HEXPROTO.config.template", {
+  const msg = game.i18n.format("HEXPROTO.cmd.config.template", {
     droneId,
     key,
     oldValue: `${oldValue}`,
