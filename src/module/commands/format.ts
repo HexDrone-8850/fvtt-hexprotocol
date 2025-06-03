@@ -69,7 +69,7 @@ function formatMsgCallback(
     },
     flags: {
       hexprotocol: {
-        replaceChatPortrait: "drone",
+        icon: "drone",
       },
     },
   };

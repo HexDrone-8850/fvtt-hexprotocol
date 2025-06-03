@@ -1,4 +1,8 @@
-import { MODULE_ID, type ChatCommandData } from "../interface-config";
+import {
+  generateChatOutput,
+  MODULE_ID,
+  type ChatCommandData,
+} from "../interface-config";
 import {
   currentUserIsAdmin,
   generateProtocolError,
@@ -53,16 +57,9 @@ async function unregisterCallback(
     droneId,
   });
 
-  return {
-    content: `<span class="hexproto-output">${msg}</span>`,
-    speaker: {
-      alias: game.i18n.localize("HEXPROTO.chatAlias.hiveAI"),
-    },
+  return generateChatOutput({
+    msg,
+    chatAlias: "hiveAI",
     whisper: [game.user.id],
-    flags: {
-      hexprotocol: {
-        replaceChatPortrait: "ai",
-      },
-    },
-  };
+  });
 }

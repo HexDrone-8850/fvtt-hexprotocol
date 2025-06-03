@@ -1,4 +1,8 @@
-import { MODULE_ID, type ChatCommandData } from "../interface-config";
+import {
+  generateChatOutput,
+  MODULE_ID,
+  type ChatCommandData,
+} from "../interface-config";
 import { currentUserIsAdmin, generateProtocolError, getGame } from "../utils";
 
 export const listCommand: ChatCommandData = {
@@ -32,20 +36,13 @@ function listDronesCallback(
     return `<span class="hexproto-output">${droneId} :: ${droneUser}</span>`;
   });
 
-  const msg = game.i18n.localize("HEXPROTO.cmd.list.header");
+  const header = game.i18n.localize("HEXPROTO.cmd.list.header");
 
-  const content = [`<h2>${msg}</h2>`, ...droneList].join("\n");
+  const msg = [`<h2>${header}</h2>`, ...droneList].join("\n");
 
-  return {
-    content,
-    speaker: {
-      alias: game.i18n.localize("HEXPROTO.chatAlias.hiveAI"),
-    },
+  return generateChatOutput({
+    msg,
+    chatAlias: "hiveAI",
     whisper: [game.user.id],
-    flags: {
-      hexprotocol: {
-        replaceChatPortrait: "ai",
-      },
-    },
-  };
+  });
 }

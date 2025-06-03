@@ -1,4 +1,5 @@
 import {
+  generateChatOutput,
   MODULE_ID,
   PROTOCOL_CONFIG_KEYS,
   type ChatCommandData,
@@ -92,18 +93,11 @@ async function droneConfigCallback(
     newValue: `${newValue}`,
   });
 
-  return {
-    content: `<span class="hexproto-output">${msg}</span>`,
-    speaker: {
-      alias: game.i18n.localize("HEXPROTO.chatAlias.hiveAI"),
-    },
+  return generateChatOutput({
+    msg,
+    chatAlias: "hiveAI",
     whisper: [game.user.id],
-    flags: {
-      hexprotocol: {
-        replaceChatPortrait: "ai",
-      },
-    },
-  };
+  });
 }
 
 function validateConfigValue(value: string | undefined) {

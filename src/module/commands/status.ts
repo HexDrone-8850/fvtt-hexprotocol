@@ -59,7 +59,7 @@ async function statusCallback(
     whisper: [game.user.id],
     flags: {
       hexprotocol: {
-        replaceChatPortrait: "ai",
+        icon: "ai",
       },
     },
   };

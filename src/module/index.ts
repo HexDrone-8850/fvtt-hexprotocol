@@ -13,7 +13,7 @@ import { registerModuleSettings } from "./settings";
 import { explainCommand } from "./commands/explain";
 import { generateIdCommand } from "./commands/generate-id";
 import { replaceChatPortrait } from "./api-integration/chat-portrait";
-import { aiChatCommand } from "./commands/ai-speak";
+import { aiChatCommand, aiNarrateCommand } from "./commands/ai-speech";
 
 interface ChatCommanderObject {
   register: (data: ChatCommandData) => void;
@@ -29,6 +29,7 @@ const chatCommands = [
   explainCommand,
   generateIdCommand,
   aiChatCommand,
+  aiNarrateCommand,
 ];
 
 Hooks.on("chatCommandsReady", (commands: ChatCommanderObject) => {

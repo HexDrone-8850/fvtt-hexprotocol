@@ -127,7 +127,11 @@
         "template": "⬡-Protocol Error code {code} description: {desc}"
       },
       "generateId.description": "Generate an 11-character ID.",
-      "aiChat.description": "Speak \"in character\" as the hive AI."
+      "aiChat.description": "Speak \"in character\" as the hive AI.",
+      "narrate": {
+        "description": "Shortcut for AI narration.",
+        "template": "NARRATION: {msg}"
+      }
     },
     "settings": {
       "allowNarration": {

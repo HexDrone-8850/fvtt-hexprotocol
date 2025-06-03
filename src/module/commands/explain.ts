@@ -1,4 +1,8 @@
-import { MODULE_ID, type ChatCommandData } from "../interface-config";
+import {
+  generateChatOutput,
+  MODULE_ID,
+  type ChatCommandData,
+} from "../interface-config";
 import { getErrorByCode } from "../protocol/error-handling";
 import { currentUserIsAdmin, generateProtocolError, getGame } from "../utils";
 
@@ -29,18 +33,9 @@ function explainCallback(
     return generateProtocolError("unknownErrorCode", isAdmin);
   }
 
-  const content = `<span class="hexproto-output">${error}</span>`;
-
-  return {
-    content,
-    speaker: {
-      alias: game.i18n.localize("HEXPROTO.chatAlias.hiveAI"),
-    },
+  return generateChatOutput({
+    msg: error,
+    chatAlias: "hiveAI",
     whisper: [game.user.id],
-    flags: {
-      hexprotocol: {
-        replaceChatPortrait: "ai",
-      },
-    },
-  };
+  });
 }

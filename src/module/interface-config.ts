@@ -1,7 +1,8 @@
 import type { EmptyObject, MaybePromise } from "fvtt-types/utils";
 import { protocolCodes, type HexProtocolCode } from "./protocol/protocol";
 import { errorIds } from "./protocol/error-handling";
-import { getGame } from "./utils";
+import { generateProtocolError, getGame } from "./utils";
+import type { ChatIconID } from "./api-integration/chat-portrait";
 
 declare module "fvtt-types/configuration" {
   interface FlagConfig {
@@ -60,6 +61,8 @@ type ChatCommandCallbackResult =
   | EmptyObject
   | undefined;
 
+type ChatAlias = "drone" | "hiveAI" | "transmission";
+
 export const MODULE_ID = "hexprotocol" as const;
 
 export function localizeModuleStrings() {
@@ -76,4 +79,38 @@ export function localizeModuleStrings() {
       `HEXPROTO.cmd.protocol.categories.${val}`,
     );
   });
+}
+
+interface ChatOutputParams {
+  msg?: string;
+  chatAlias?: ChatAlias;
+  whisper?: string[];
+  icon?: ChatIconID;
+}
+
+export function generateChatOutput({
+  msg,
+  chatAlias,
+  whisper = undefined,
+}: ChatOutputParams = {}): ChatMessage.CreateData {
+  if (!msg || !chatAlias) {
+    return generateProtocolError("contentMissing");
+  }
+
+  const icon: ChatIconID = chatAlias === "drone" ? "drone" : "ai";
+  const content = `<span class="hexproto-output">${msg}</span>`;
+  const alias = getGame().i18n.localize(`HEXPROTO.chatAlias.${chatAlias}`);
+
+  return {
+    content,
+    speaker: {
+      alias,
+    },
+    whisper,
+    flags: {
+      hexprotocol: {
+        icon,
+      },
+    },
+  };
 }

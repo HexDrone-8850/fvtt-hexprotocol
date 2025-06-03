@@ -1,4 +1,8 @@
-import { MODULE_ID, type ChatCommandData } from "../interface-config";
+import {
+  generateChatOutput,
+  MODULE_ID,
+  type ChatCommandData,
+} from "../interface-config";
 import {
   currentUserIsAdmin,
   generateProtocolError,
@@ -56,20 +60,14 @@ async function registerCallback(
   }
 
   // Generate output
-  const output = game.i18n.format("HEXPROTO.cmd.register.template", {
+  const msg = game.i18n.format("HEXPROTO.cmd.register.template", {
     droneId,
     username,
   });
-  return {
-    content: `<span class="hexproto-output">${output}</span>`,
-    speaker: {
-      alias: game.i18n.localize("HEXPROTO.chatAlias.hiveAI"),
-    },
+
+  return generateChatOutput({
+    msg,
+    chatAlias: "hiveAI",
     whisper: [game.user.id],
-    flags: {
-      hexprotocol: {
-        replaceChatPortrait: "ai",
-      },
-    },
-  };
+  });
 }
