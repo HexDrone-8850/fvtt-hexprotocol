@@ -34,7 +34,7 @@ function explainCallback(
   return {
     content,
     speaker: {
-      alias: game.i18n.localize("HEXPROTO.chatAlias.hexAI"),
+      alias: game.i18n.localize("HEXPROTO.chatAlias.hiveAI"),
     },
     whisper: [game.user.id],
     flags: {

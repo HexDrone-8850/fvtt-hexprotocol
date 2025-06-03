@@ -1,23 +1,5 @@
 {
   "HEXPROTO": {
-    "settings": {
-      "allowNarration": {
-        "name": "Enable protocol extension 600",
-        "hint": "Enables admin-only protocol extension code 600 for narrative transmissions."
-      },
-      "allowOOC": {
-        "name": "Enable protocol extension 700",
-        "hint": "Enables protocol extension code 700 for out-of-character transmissions."
-      },
-      "useIdentifyingAlias": {
-        "name": "Use identifying chat alias",
-        "hint": "Use a chat alias that identifies the sender of a ⬡-Protocol transmission."
-      },
-      "bullyMode": {
-        "name": "Bully Mode",
-        "hint": "Bullies non-admin users by displaying opaque error codes instead of anything meaningful."
-      }
-    },
     "cmd": {
       "protocol": {
         "description": "Generate ⬡-Protocol messages.",
@@ -145,11 +127,29 @@
         "template": "⬡-Protocol Error code {code} description: {desc}"
       },
       "generateId.description": "Generate an 11-character ID.",
-      "narrate.description": "Alias for /hc!protocol 600 <msg>"
+      "aiChat.description": "Speak \"in character\" as the hive AI."
+    },
+    "settings": {
+      "allowNarration": {
+        "name": "Enable protocol extension 600",
+        "hint": "Enables admin-only protocol extension code 600 for narrative transmissions."
+      },
+      "allowOOC": {
+        "name": "Enable protocol extension 700",
+        "hint": "Enables protocol extension code 700 for out-of-character transmissions."
+      },
+      "useIdentifyingAlias": {
+        "name": "Use identifying chat alias",
+        "hint": "Use a chat alias that identifies the sender of a ⬡-Protocol transmission."
+      },
+      "bullyMode": {
+        "name": "Bully Mode",
+        "hint": "Bullies non-admin users by displaying opaque error codes instead of anything meaningful."
+      }
     },
     "chatAlias": {
-      "hexDrone": "⬡-Drone #{droneId}",
-      "hexAI": "⬡-AI",
+      "drone": "⬡-Drone #{droneId}",
+      "hiveAI": "⬡-AI",
       "transmission": "⬡-Protocol Transmission"
     },
     "error": {

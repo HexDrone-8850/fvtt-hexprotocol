@@ -17,7 +17,7 @@ interface ChatPortraitCustomData {
 
 const CHAT_PORTRAIT_PATHS = {
   drone: "modules/hexprotocol/img/drone_avatar.png",
-  ai: "modules/hexprotocol/img/drone_avatar.png",
+  ai: "modules/hexprotocol/img/hive_mainframe.Avatar.webp",
 };
 
 export function replaceChatPortrait(

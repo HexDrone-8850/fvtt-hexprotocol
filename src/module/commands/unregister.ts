@@ -56,7 +56,7 @@ async function unregisterCallback(
   return {
     content: `<span class="hexproto-output">${msg}</span>`,
     speaker: {
-      alias: game.i18n.localize("HEXPROTO.chatAlias.hexAI"),
+      alias: game.i18n.localize("HEXPROTO.chatAlias.hiveAI"),
     },
     whisper: [game.user.id],
     flags: {

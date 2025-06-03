@@ -14,9 +14,9 @@ interface ProtocolMsgParams {
 
 export const formatMsgCommand: ChatCommandData = {
   name: "/hc!protocol",
+  aliases: ["/h", "/d"],
   module: MODULE_ID,
   description: "HEXPROTO.cmd.protocol.description",
-  aliases: ["/h", "/d"],
   icon: '<img src="icons/svg/sound.svg" />',
   callback: formatMsgCallback,
 };
@@ -59,7 +59,7 @@ function formatMsgCallback(
   const content = `<span class="hexproto-output">${output}</span>`;
 
   const chatAlias = settings.get("hexprotocol", "useIdentifyingAlias")
-    ? "hexDrone"
+    ? "drone"
     : "transmission";
 
   return {
