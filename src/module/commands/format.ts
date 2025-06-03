@@ -14,9 +14,9 @@ interface ProtocolMsgParams {
 
 export const formatMsgCommand: ChatCommandData = {
   name: "/hc!protocol",
-  module: MODULE_ID,
-  description: "HEXPROTO.cmd.hex.description",
   aliases: ["/h", "/d"],
+  module: MODULE_ID,
+  description: "HEXPROTO.cmd.protocol.description",
   icon: '<img src="icons/svg/sound.svg" />',
   callback: formatMsgCallback,
 };
@@ -43,9 +43,9 @@ function formatMsgCallback(
   // Hence the `as string`
   const details = isCustomCode
     ? message
-    : i18n.localize(`HEXPROTO.protocol.details.${code as string}`);
+    : i18n.localize(`HEXPROTO.cmd.protocol.details.${code as string}`);
 
-  let output = i18n.format("HEXPROTO.protocol.template", {
+  let output = i18n.format("HEXPROTO.cmd.protocol.template", {
     droneId,
     code: `${code}`,
     category,
@@ -59,7 +59,7 @@ function formatMsgCallback(
   const content = `<span class="hexproto-output">${output}</span>`;
 
   const chatAlias = settings.get("hexprotocol", "useIdentifyingAlias")
-    ? "hexDrone"
+    ? "drone"
     : "transmission";
 
   return {
@@ -69,7 +69,7 @@ function formatMsgCallback(
     },
     flags: {
       hexprotocol: {
-        replaceChatPortrait: "drone",
+        icon: "drone",
       },
     },
   };

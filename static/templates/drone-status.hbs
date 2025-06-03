@@ -1,9 +1,9 @@
-<h2>{{localize "HEXPROTO.status.header" droneId=droneId}}</h2>
-<div class="hexproto-output">{{localize "HEXPROTO.status.username" username=username}}</div>
-<div class="hexproto-output">{{localize "HEXPROTO.status.isAdmin" value=(ifThen isAdmin "True" "False")}}</div>
+<h2>{{localize "HEXPROTO.cmd.status.header" droneId=droneId}}</h2>
+<div class="hexproto-output">{{localize "HEXPROTO.cmd.status.username" username=username}}</div>
+<div class="hexproto-output">{{localize "HEXPROTO.cmd.status.isAdmin" value=(ifThen isAdmin "True" "False")}}</div>
 {{#unless isAdmin}}
-<div class="hexproto-output">{{localize "HEXPROTO.status.speechOptimized"
+<div class="hexproto-output">{{localize "HEXPROTO.cmd.status.speechOptimized"
   value=(ifThen optimizeSpeech "True" "False")}}</div>
-<div class="hexproto-output">{{localize "HEXPROTO.status.forcePrependId"
+<div class="hexproto-output">{{localize "HEXPROTO.cmd.status.forcePrependId"
   value=(ifThen forcePrependId "True" "False")}}</div>
 {{/unless}}

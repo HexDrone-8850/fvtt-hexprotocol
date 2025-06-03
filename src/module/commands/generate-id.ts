@@ -1,4 +1,8 @@
-import { MODULE_ID, type ChatCommandData } from "../interface-config";
+import {
+  generateChatOutput,
+  MODULE_ID,
+  type ChatCommandData,
+} from "../interface-config";
 import { getGame, randomString } from "../utils";
 
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890" as const;
@@ -23,18 +27,11 @@ function generateIdCallback(
   const id2 = randomString(2, chars);
   const commId = randomString(4, numbers);
 
-  const content = `<span class="hexproto-output">${id1}-${id2}-${commId}</span>`;
+  const msg = `${id1}-${id2}-${commId}`;
 
-  return {
-    content,
-    speaker: {
-      alias: game.i18n.localize("HEXPROTO.chatAlias.hexAI"),
-    },
+  return generateChatOutput({
+    msg,
+    chatAlias: "hiveAI",
     whisper: [game.user.id],
-    flags: {
-      hexprotocol: {
-        replaceChatPortrait: "ai",
-      },
-    },
-  };
+  });
 }

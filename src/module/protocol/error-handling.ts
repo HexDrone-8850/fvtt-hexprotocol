@@ -87,7 +87,7 @@ export function isErrorID(
 export function getErrorByCode(code: string | number) {
   for (const error of Object.values(errorIds)) {
     if (error.code == code) {
-      return getGame().i18n.format("HEXPROTO.explain", {
+      return getGame().i18n.format("HEXPROTO.cmd.explain.template", {
         code: error.code,
         desc: error.desc,
       });

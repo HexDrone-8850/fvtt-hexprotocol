@@ -1,4 +1,5 @@
 import {
+  generateChatOutput,
   MODULE_ID,
   PROTOCOL_CONFIG_KEYS,
   type ChatCommandData,
@@ -80,30 +81,23 @@ async function droneConfigCallback(
 
   const oldValue =
     getDroneConfig(droneId, key) ??
-    game.i18n.localize("HEXPROTO.config.undefined");
+    game.i18n.localize("HEXPROTO.cmd.config.undefined");
 
   await setDroneConfig(droneId, key, newValue);
 
   // Generate output
-  const msg = game.i18n.format("HEXPROTO.config.template", {
+  const msg = game.i18n.format("HEXPROTO.cmd.config.template", {
     droneId,
     key,
     oldValue: `${oldValue}`,
     newValue: `${newValue}`,
   });
 
-  return {
-    content: `<span class="hexproto-output">${msg}</span>`,
-    speaker: {
-      alias: game.i18n.localize("HEXPROTO.chatAlias.hexAI"),
-    },
+  return generateChatOutput({
+    msg,
+    chatAlias: "hiveAI",
     whisper: [game.user.id],
-    flags: {
-      hexprotocol: {
-        replaceChatPortrait: "ai",
-      },
-    },
-  };
+  });
 }
 
 function validateConfigValue(value: string | undefined) {
