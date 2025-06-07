@@ -130,7 +130,7 @@
       "aiChat.description": "Speak \"in character\" as the hive AI.",
       "narrate": {
         "description": "Shortcut for AI narration.",
-        "template": "NARRATION: {msg}"
+        "template": "TRANSMITTING NARRATION: {msg}"
       }
     },
     "settings": {
