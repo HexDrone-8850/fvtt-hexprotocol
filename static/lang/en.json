@@ -16,7 +16,7 @@
           "error": "Error",
           "mantra": "Mantra",
           "fatalError": "Fatal error",
-          "narration": "Narration",
+          "action": "Action",
           "ooc": "OOC"
         },
         "details": {
@@ -134,10 +134,6 @@
       }
     },
     "settings": {
-      "allowNarration": {
-        "name": "Enable protocol extension 600",
-        "hint": "Enables admin-only protocol extension code 600 for narrative transmissions."
-      },
       "allowOOC": {
         "name": "Enable protocol extension 700",
         "hint": "Enables protocol extension code 700 for out-of-character transmissions."

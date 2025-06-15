@@ -1,4 +1,4 @@
-import { currentUserIsAdmin, getGame } from "../utils";
+import { getGame } from "../utils";
 
 export type HexProtocolCode = keyof typeof protocolCodes;
 export type CustomProtocolCode = (typeof customMessageCodes)[number];
@@ -85,7 +85,7 @@ export const protocolCodes = {
   413: "error",
   450: "error",
   500: "response",
-  600: "narration",
+  600: "action",
   700: "ooc",
 };
 
@@ -112,13 +112,12 @@ export const customMessageCodes = [
   "350",
   // Error
   "450",
-  // Narration
+  // Action
   "600",
   // OOC
   "700",
 ] as const; // These are localized in the i18nInit hook
 
-export const NARRATION_CODE = "600" as const;
 export const OOC_CODE = "700" as const;
 
 export function isCustomMessageCode(code: unknown): code is CustomProtocolCode {
@@ -130,12 +129,7 @@ export function isValidProtocolCode(
 ): code is HexProtocolCode {
   const settings = getGame().settings;
 
-  const denyNarration =
-    code === NARRATION_CODE &&
-    !(settings.get("hexprotocol", "allowNarration") && currentUserIsAdmin());
   const denyOOC = code === OOC_CODE && !settings.get("hexprotocol", "allowOOC");
 
-  return (
-    code != undefined && code in protocolCodes && !denyNarration && !denyOOC
-  );
+  return code != undefined && code in protocolCodes && !denyOOC;
 }
