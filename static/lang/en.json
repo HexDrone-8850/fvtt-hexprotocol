@@ -16,8 +16,8 @@
           "error": "Error",
           "mantra": "Mantra",
           "fatalError": "Fatal error",
-          "narration": "Narration",
-          "ooc": "OOC"
+          "ooc": "OOC",
+          "action": "Action"
         },
         "details": {
           "000": "Previous statement malformed. Retracting and correcting.",
@@ -55,6 +55,7 @@
           "155": "Battery low.",
           "156": "Maintenance required..",
           "200": "Affirmative.",
+          "201": "Negative.",
           "210": "Acknowledged.",
           "211": "Apologies.",
           "212": "Accepted.",
@@ -91,7 +92,37 @@
           "411": "Unable to obey/respond :: Conflicts with existing programming.",
           "412": "Unable to obey/respond :: All thoughts are gone.",
           "413": "Unable to obey/respond :: Forbidden by Hive.",
-          "500": "Negative."
+          "510": "Examining and listening at door.",
+          "511": "Searching for secret doors.",
+          "512": "Searching for room traps.",
+          "513": "Spiking door.",
+          "514": "Lighting torch.",
+          "515": "Lighting lantern.",
+          "520": "Turning undead.",
+          "521": "Casting spell.",
+          "522": "Opening lock.",
+          "523": "Searching for treasure traps.",
+          "524": "Disarming treasure trap.",
+          "525": "Hiding in shadows.",
+          "526": "Moving silently.",
+          "530": "Engaging monsters.",
+          "531": "Initiating parley.",
+          "532": "Evading encounter.",
+          "533": "Initiating fighting withdrawal.",
+          "534": "Initiating retreat.",
+          "540": "Initiating rest.",
+          "541": "Initiating rest. Break requested.",
+          "550": "Initiating room inspection.",
+          "551": "Resuming exploration.",
+          "560": "Requesting saving throw: Death.",
+          "561": "Requesting saving throw: Poison.",
+          "562": "Requesting saving throw: Wands.",
+          "563": "Requesting saving throw: Paralysis.",
+          "564": "Requesting saving throw: Petrification.",
+          "565": "Requesting saving throw: Breath weapon.",
+          "566": "Requesting saving throw: Spells.",
+          "567": "Requesting saving throw: Rods.",
+          "568": "Requesting saving throw: Staves."
         }
       },
       "list": {
@@ -134,13 +165,9 @@
       }
     },
     "settings": {
-      "allowNarration": {
-        "name": "Enable protocol extension 600",
-        "hint": "Enables admin-only protocol extension code 600 for narrative transmissions."
-      },
       "allowOOC": {
-        "name": "Enable protocol extension 700",
-        "hint": "Enables protocol extension code 700 for out-of-character transmissions."
+        "name": "Enable protocol extension 600",
+        "hint": "Enables protocol extension code 600 for out-of-character transmissions."
       },
       "useIdentifyingAlias": {
         "name": "Use identifying chat alias",
