@@ -92,6 +92,8 @@
           "411": "Unable to obey/respond :: Conflicts with existing programming.",
           "412": "Unable to obey/respond :: All thoughts are gone.",
           "413": "Unable to obey/respond :: Forbidden by Hive.",
+          "414": "Unable to obey/respond :: Movement disabled.",
+
           "510": "Examining and listening at door.",
           "511": "Opening door.",
           "512": "Spiking door.",
