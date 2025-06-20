@@ -92,6 +92,7 @@ export const protocolCodes = {
   513: "action",
   514: "action",
   515: "action",
+  516: "action",
   520: "action",
   521: "action",
   522: "action",
@@ -99,13 +100,14 @@ export const protocolCodes = {
   524: "action",
   525: "action",
   526: "action",
-  530: "action",
-  531: "action",
-  532: "action",
+  530: "response",
+  531: "response",
+  532: "response",
   533: "action",
   534: "action",
   540: "action",
   541: "action",
+  542: "action",
   550: "action",
   551: "action",
   560: "query",
@@ -129,12 +131,6 @@ export const customMessageCodes = [
   "052",
   // Answer
   "053",
-  // Statement :: Addressing: Drone.
-  "110",
-  // Statement :: Addressing: Admin.
-  "111",
-  // Statement :: Addressing: Associate.
-  "112",
   // Status
   "150",
   // Response
