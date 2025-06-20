@@ -84,6 +84,7 @@ export const protocolCodes = {
   411: "error",
   412: "error",
   413: "error",
+  414: "error",
   450: "error",
   500: "action",
   510: "action",
