@@ -1,13 +1,12 @@
 {
   "name": "fvtt-starter-project",
   "type": "module",
-  "private": true,
-  "packageManager": "yarn@4.9.1",
+  "packageManager": "yarn@4.6.0",
   "scripts": {
     "build": "vite build",
     "dev": "vite",
     "format": "prettier -w .",
-    "lint": "run-s lint:scripts lint:styles",
+    "lint": "npm-run-all --print-name -c lint:scripts lint:styles",
     "lint:scripts": "eslint .",
     "lint:styles": "stylelint **/*.{css,scss}",
     "typecheck": "tsc -b"
@@ -17,34 +16,33 @@
     "@eslint/js": "^9.29.0",
     "@types/eslint": "^9.6.1",
     "@types/eslint-config-prettier": "^6.11.3",
-    "@types/eslint__js": "^9.14.0",
-    "@types/node": "^22.15.31",
+    "@types/eslint__js": "^8.42.3",
+    "@types/node": "^22.15.32",
     "esbuild": "^0.24.2",
     "eslint": "^9.29.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-import-resolver-typescript": "^3.10.1",
     "eslint-plugin-import-x": "^4.15.2",
     "eslint-plugin-tsdoc": "^0.4.0",
-    "fvtt-types": "https://github.com/League-of-Foundry-Developers/foundry-vtt-types.git#commit=59aa8de5cedd25663c257a7647f743fe504dd424",
-    "postcss": "^8.5.5",
+    "fvtt-types": "github:League-of-Foundry-Developers/foundry-vtt-types#main",
+    "npm-run-all2": "^8.0.4",
     "prettier": "^3.5.3",
     "run-s": "^0.0.0",
     "sass-embedded": "^1.89.2",
-    "stylelint": "^16.20.0",
+    "stylelint": "^16.21.0",
     "stylelint-config-prettier-scss": "^1.0.0",
     "stylelint-config-standard": "^37.0.0",
     "stylelint-config-standard-scss": "^14.0.0",
     "stylelint-scss": "^6.12.1",
     "type-fest": "^4.41.0",
     "typescript": "^5.8.3",
-    "typescript-eslint": "^8.34.0",
+    "typescript-eslint": "^8.34.1",
     "vite": "^6.3.5",
     "vite-plugin-checker": "^0.8.0",
     "vite-plugin-static-copy": "^2.3.1",
     "vite-tsconfig-paths": "^5.1.4"
   },
   "resolutions": {
-    "meow": "^9.0.0",
-    "@types/earcut": "^3.0.0"
+    "meow": "^9.0.0"
   }
 }

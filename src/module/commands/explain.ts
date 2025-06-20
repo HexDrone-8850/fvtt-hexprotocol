@@ -6,6 +6,8 @@ import {
 import { getErrorByCode } from "../protocol/error-handling";
 import { currentUserIsAdmin, generateProtocolError, getGame } from "../utils";
 
+import ChatLog = foundry.applications.sidebar.tabs.ChatLog;
+
 export const explainCommand: ChatCommandData = {
   name: "/hc!explain",
   module: MODULE_ID,

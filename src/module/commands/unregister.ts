@@ -11,6 +11,8 @@ import {
   validateDroneId,
 } from "../utils";
 
+import ChatLog = foundry.applications.sidebar.tabs.ChatLog;
+
 export const unregisterCommand: ChatCommandData = {
   name: "/hc!unregister",
   aliases: ["/hc!undronify"],

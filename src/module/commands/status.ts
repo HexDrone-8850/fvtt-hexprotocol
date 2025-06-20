@@ -7,6 +7,9 @@ import {
   getGame,
 } from "../utils";
 
+import ChatLog = foundry.applications.sidebar.tabs.ChatLog;
+import renderTemplate = foundry.applications.handlebars.renderTemplate;
+
 export const statusCommand: ChatCommandData = {
   name: "/hc!status",
   module: MODULE_ID,

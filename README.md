@@ -64,11 +64,7 @@ Display the designated drone's current status and configuration. Any drone may q
 
 This library includes two optional extension codes to expedite communication in a tabletop RPG context. GM users may choose to disallow them on an individual basis using the module settings..
 
-`600: Narration`
-
-Only available to admins. A ⬡-Protocol-flavored alternative to the built-in `/desc` command.
-
-`700: OOC`
+`600: OOC`
 
 A ⬡-Protocol-flavored alternative to the built-in `/ooc` command.
 

@@ -1,4 +1,4 @@
-import { currentUserIsAdmin, getGame } from "../utils";
+import { getGame } from "../utils";
 
 export type HexProtocolCode = keyof typeof protocolCodes;
 export type CustomProtocolCode = (typeof customMessageCodes)[number];
@@ -45,6 +45,7 @@ export const protocolCodes = {
   155: "status",
   156: "status",
   200: "response",
+  201: "response",
   210: "response",
   211: "response",
   212: "response",
@@ -84,9 +85,39 @@ export const protocolCodes = {
   412: "error",
   413: "error",
   450: "error",
-  500: "response",
-  600: "narration",
-  700: "ooc",
+  500: "action",
+  510: "action",
+  511: "action",
+  512: "action",
+  513: "action",
+  514: "action",
+  515: "action",
+  520: "action",
+  521: "action",
+  522: "action",
+  523: "action",
+  524: "action",
+  525: "action",
+  526: "action",
+  530: "action",
+  531: "action",
+  532: "action",
+  533: "action",
+  534: "action",
+  540: "action",
+  541: "action",
+  550: "action",
+  551: "action",
+  560: "query",
+  561: "query",
+  562: "query",
+  563: "query",
+  564: "query",
+  565: "query",
+  566: "query",
+  567: "query",
+  568: "query",
+  600: "ooc",
 };
 
 export const customMessageCodes = [
@@ -112,14 +143,13 @@ export const customMessageCodes = [
   "350",
   // Error
   "450",
-  // Narration
-  "600",
+  // Action
+  "500",
   // OOC
-  "700",
+  "600",
 ] as const; // These are localized in the i18nInit hook
 
-export const NARRATION_CODE = "600" as const;
-export const OOC_CODE = "700" as const;
+export const OOC_CODE = "600" as const;
 
 export function isCustomMessageCode(code: unknown): code is CustomProtocolCode {
   return customMessageCodes.includes(code as CustomProtocolCode);
@@ -130,12 +160,7 @@ export function isValidProtocolCode(
 ): code is HexProtocolCode {
   const settings = getGame().settings;
 
-  const denyNarration =
-    code === NARRATION_CODE &&
-    !(settings.get("hexprotocol", "allowNarration") && currentUserIsAdmin());
   const denyOOC = code === OOC_CODE && !settings.get("hexprotocol", "allowOOC");
 
-  return (
-    code != undefined && code in protocolCodes && !denyNarration && !denyOOC
-  );
+  return code != undefined && code in protocolCodes && !denyOOC;
 }

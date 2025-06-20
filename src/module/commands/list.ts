@@ -5,6 +5,8 @@ import {
 } from "../interface-config";
 import { currentUserIsAdmin, generateProtocolError, getGame } from "../utils";
 
+import ChatLog = foundry.applications.sidebar.tabs.ChatLog;
+
 export const listCommand: ChatCommandData = {
   name: "/hc!list",
   module: MODULE_ID,
