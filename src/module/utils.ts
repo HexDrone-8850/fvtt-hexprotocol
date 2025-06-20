@@ -6,7 +6,7 @@ import { type HexProtocolErrorId } from "./protocol/error-handling";
 import { localizeError } from "./protocol/error-handling";
 
 export function getGame(): ReadyGame {
-  if (game instanceof Game && game.ready) {
+  if (game instanceof foundry.Game && game.ready) {
     return game;
   }
 

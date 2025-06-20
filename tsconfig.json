@@ -17,10 +17,9 @@
     // `@pixi/utils/lib/index.d.mts` still depends on `allowSyntheticDefaultImports`.
     "allowSyntheticDefaultImports": true,
 
-    // The files this tsconfig.json includes won't even have `fvtt-types`.
-    // See `src/tsconfig.json` for how it sets up its type.
-    // You can add types here if necessary. It'll only be scoped to the root files though.
-    "types": [],
+    // By default TypeScript will include all types under `@types` but fvtt-types is not under `@types` and enabling only what you need is a good idea.
+    // You can add types here if necessary.
+    "types": ["fvtt-types"],
 
     // Strict is _highly_ recommended. It's a whole suite of options in tsc that help you catch bugs early.
     // If you want to disable it for some reason, you must add "strictNullChecks": true or else foundry-vtt-types may not function correctly.
@@ -51,7 +50,7 @@
     // Types like `Record<string, T>` are very unsafe.
     // 1. They allow typos like `x.naem` when you really meant `x.name`.
     // 2. Out of the box they don't force you to handle `undefined` (notably this is fixed by `noUncheckedIndexedAccess`).
-    // 3.
+    // 3. They make it easier to make mistakes with mutation.
     "noPropertyAccessFromIndexSignature": true,
 
     "noImplicitOverride": true,
@@ -71,7 +70,7 @@
     // The editor always runs an incremental build but if you run tsc directly you might want to take advantage of the performance boost from incremental builds.
     // This is essentially a free performance boost if you run tsc from the command line a lot.
     //
-    // Note that occasionally an incremental build might cause "ghost errors." That is an error that only occurs due to recompilation occurring in a different order than
+    // Note that occassionally an incremental build might cause "ghost errors." That is an error that only occurs due to recompilation occuring in a different order than
     // the original compilation. Given that the ordering of compilation is not guaranteed anywhere this is only uncovering already existing, legitimate, issues but this can
     // still be rather frustrating as tracking them down can be difficult.
     "incremental": true

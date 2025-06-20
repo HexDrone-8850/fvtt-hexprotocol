@@ -5,6 +5,8 @@ import { type HexProtocolErrorId } from "../protocol/error-handling";
 import { currentUserIsAdmin, generateProtocolError, getGame } from "../utils";
 import { isValidProtocolCode, isCustomMessageCode } from "../protocol/protocol";
 
+import ChatLog = foundry.applications.sidebar.tabs.ChatLog;
+
 interface ProtocolMsgParams {
   droneId: string;
   code: HexProtocolCode;

@@ -16,6 +16,8 @@ import {
   validateDroneId,
 } from "../utils";
 
+import ChatLog = foundry.applications.sidebar.tabs.ChatLog;
+
 export const configMsgCommand: ChatCommandData = {
   name: "/hc!config",
   module: MODULE_ID,

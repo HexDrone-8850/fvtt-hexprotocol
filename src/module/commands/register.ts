@@ -10,6 +10,8 @@ import {
   randomString,
 } from "../utils";
 
+import ChatLog = foundry.applications.sidebar.tabs.ChatLog;
+
 export const registerCommand: ChatCommandData = {
   name: "/hc!register",
   aliases: ["/hc!dronify"],

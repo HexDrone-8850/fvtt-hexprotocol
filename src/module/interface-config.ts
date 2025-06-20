@@ -4,6 +4,8 @@ import { errorIds } from "./protocol/error-handling";
 import { generateProtocolError, getGame } from "./utils";
 import type { ChatIconID } from "./api-integration/chat-portrait";
 
+import ChatLog = foundry.applications.sidebar.tabs.ChatLog;
+
 declare module "fvtt-types/configuration" {
   interface FlagConfig {
     User: {

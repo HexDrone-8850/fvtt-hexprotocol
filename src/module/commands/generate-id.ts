@@ -5,6 +5,8 @@ import {
 } from "../interface-config";
 import { getGame, randomString } from "../utils";
 
+import ChatLog = foundry.applications.sidebar.tabs.ChatLog;
+
 const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890" as const;
 const numbers = "1234567890" as const;
 
