@@ -93,6 +93,7 @@ function validateParams(params: string, isAdmin = false): ProtocolMsgParams {
     user.getFlag("hexprotocol", "optimizeSpeech") && !isAdmin;
   const forcePrependId =
     user.getFlag("hexprotocol", "forcePrependId") && !isAdmin;
+  const allowAnyId = user.getFlag("hexprotocol", "allowAnyId");
 
   const isCustomProtocol = isCustomMessageCode(code);
 
@@ -115,7 +116,7 @@ function validateParams(params: string, isAdmin = false): ProtocolMsgParams {
   }
 
   // Did it prepend a non-matching ID and it isn't an admin?
-  if (id && !isAdmin && id !== storedID) {
+  if (id && !isAdmin && id !== storedID && !allowAnyId) {
     output.error ??= "droneIdMismatch";
   }
 

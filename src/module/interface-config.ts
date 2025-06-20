@@ -46,6 +46,7 @@ export const PROTOCOL_CONFIG_KEYS = [
   "isAdmin",
   "optimizeSpeech",
   "forcePrependId",
+  "allowAnyId",
 ] as const;
 
 interface HexProtocolConfig {
@@ -54,6 +55,7 @@ interface HexProtocolConfig {
   isAdmin?: boolean;
   optimizeSpeech?: boolean;
   forcePrependId?: boolean;
+  allowAnyId?: boolean;
 }
 
 type ChatCommandCallbackResult =

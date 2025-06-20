@@ -40,6 +40,7 @@ async function statusCallback(
   const droneIsAdmin = getDroneConfig(droneId, "isAdmin");
   const optimizeSpeech = getDroneConfig(droneId, "optimizeSpeech");
   const forcePrependId = getDroneConfig(droneId, "forcePrependId");
+  const allowAnyId = getDroneConfig(droneId, "allowAnyId");
 
   const templatePath = "modules/hexprotocol/templates/drone-status.hbs";
 
@@ -49,6 +50,7 @@ async function statusCallback(
     isAdmin: droneIsAdmin,
     optimizeSpeech,
     forcePrependId,
+    allowAnyId,
   });
 
   return {

@@ -148,6 +148,7 @@
         "isAdmin": "Admin: {value}",
         "speechOptimized": "Speech Optimized: {value}",
         "forcePrependId": "Force Prepend ID: {value}",
+        "allowAnyId": "Allow Any ID: {value}",
 
         "true": "True",
         "false": "False"

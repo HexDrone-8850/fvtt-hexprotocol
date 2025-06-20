@@ -5,6 +5,7 @@ declare module "fvtt-types/configuration" {
     "hexprotocol.allowOOC": boolean;
     "hexprotocol.useIdentifyingAlias": boolean;
     "hexprotocol.bullyMode": boolean;
+    "hexprotocol.allowPrepending": boolean;
   }
 }
 
