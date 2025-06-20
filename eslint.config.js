@@ -16,7 +16,6 @@ export default ts.config(
 
   // Automatically includes the .gitignore file in ESLint's ignore list.
   // I find this the most intuitive behavior.
-  // @ts-expect-error idk why this is
   includeIgnoreFile(path.resolve(import.meta.dirname, ".gitignore")),
   {
     languageOptions: {
@@ -34,6 +33,9 @@ export default ts.config(
       "import-x/resolver": "typescript",
     },
     rules: {
+      // Disable checking for namespaces not present in V12
+      "@typescript-eslint/no-deprecated": "off",
+
       // Avoiding `any` is good practice in TypeScript
       // Many users of TypeScript struggle to avoid `any` though and this rule helps make sure they do.
       // `foundry-vtt-types` ships with common helper types like `AnyObject`, `AnyArray`, `AnyFunction`, etc.
