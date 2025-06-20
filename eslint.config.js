@@ -16,6 +16,7 @@ export default ts.config(
 
   // Automatically includes the .gitignore file in ESLint's ignore list.
   // I find this the most intuitive behavior.
+  // @ts-expect-error idk why this is
   includeIgnoreFile(path.resolve(import.meta.dirname, ".gitignore")),
   {
     languageOptions: {
